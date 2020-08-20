@@ -5,16 +5,21 @@ import random as r
 def mine_asteroid(asteroid=None, power=1):
     """Take single asteroid JSON object, remove int(power) from random elements, return object with reduced weights.
 
-    1 power = 1 kg of mass/material removed
+    1 power = 1 kg of mass && material removed
 
     MAX int(power) = 10000
 
-    sequences
-    ---------
+    Sequences:
+    ----------
         randomly choose ice, silicate, iron, slag
         deduct 1 (kg) from material
         deduct 1 (kg) from mass
         repeat x times
+
+    TODO:
+    -----
+        * Design JSON blueprint
+        * Randomly mine all asteroid elements from JSON blueprint.
     """
     if asteroid is None:
         asteroid = {
@@ -73,3 +78,7 @@ def mine_asteroid(asteroid=None, power=1):
 
     # with open('data/data.json', 'w') as json_outfile:
     #     json.dump(data, json_outfile, indent=4)
+
+
+if __name__ == "__main__":
+    mine_asteroid(power=50)

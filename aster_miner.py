@@ -6,15 +6,18 @@ Assign attributes:
 Create function to use the Miners power to collect the value of the Asteroid
 """
 
-import random, json
+import random
+import json
 from itertools import count
 
 miner = {"power": 100, "value": 0, "production": 0}
 asteroid = {"value": 101}
 rocks = {}
 
+
 class Asteroid:
     _counter = count(4)
+
     def __init__(self):
         self.id = next(self._counter)
         random.seed()  # helps with better random number generation
@@ -33,12 +36,14 @@ def mine_value():
     else:
         miner['production'] = 0
         print("\nThis asteroid is tapped out.  Locate another one.")
-    
+
     print_attributes()
+
 
 def find_asteroid():
     random.seed()  # helps with better random number generation
     asteroid['value'] = random.randint(100, 999)
+
 
 def print_attributes():
     """
@@ -51,24 +56,26 @@ def print_attributes():
     print("\nminer")
     for attribute in miner.keys():
         print(f"\t{attribute} : {miner[attribute]}")
-    
+
     print("\nasteroid")
     for attribute in asteroid.keys():
         print(f"\t{attribute} : {asteroid[attribute]}")
 
 # def save_attributes():
-#     with open('data.json', 'w') as outfile:  
+#     with open('data.json', 'w') as outfile:
 #         json.dump(workload, outfile,indent=4)
 
+
 def load_attributes():
-    with open('data.json') as json_file:  
+    with open('data.json') as json_file:
         workload = json.load(json_file)
         for miner in workload['miner']:
             print(f"miner power : {miner['power']}")
             print(f"miner value : {miner['value']}")
-        
+
         for asteroid in workload['asteroid']:
             print(f"asteroid value : {asteroid['value']}")
+
 
 def impact_countdown(initial, impact):
     # Take initial number and decrease by impact %
@@ -79,6 +86,7 @@ def impact_countdown(initial, impact):
     # 12.5
     # 0
     pass
+
 
 running = True
 

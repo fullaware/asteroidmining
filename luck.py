@@ -1,24 +1,15 @@
-import random
+"""Various functions to produce random luck results;
 
-
-"""
-Various functions to produce random luck results;
-
-max_count = 45
-
-#   max_count is the upper range limit of the number of times the 
-#       dice will be rolled before returning the results.  
-#       This helps produce more randomized results.
-
-diceroll(sides, max_count) 
-polarity(max_count) # boolean; 
+diceroll(sides, max_count)
+polarity(max_count) # boolean;
 coinflip(max_count)
 runofluck # Count/MaxLimit moves this should effect
 
 """
+import random
 
 
-def diceroll(sides=6, max_count=90):
+def diceroll(sides=6, max_count=45):
     roll = {}
 
     for _ in range(0, max_count, 1):
@@ -33,7 +24,16 @@ def diceroll(sides=6, max_count=90):
     return roll
 
 
-def polarity(max_count=90):
+def polarity(max_count=45):
+    """
+    max_count is the upper range limit of the number of times the
+    dice will be rolled before returning the results.
+    This helps prime the random seed generator and produce more randomized results.
+
+    TODO:
+    -----
+        * Convert to dict?
+    """
 
     for _ in range(0, max_count, 1):
         pol = []
@@ -43,21 +43,19 @@ def polarity(max_count=90):
             pol.append(1)
             pol.append('bad')
             pol.append('negative')
+            pol.append('tails')
         else:
             pol.append(0)
             pol.append('good')
             pol.append('positive')
-
+            pol.append('heads')
     return pol
 
-
-def coinflip():
-    pass
-
-
-print(f"Dice 1 : {diceroll()['dice1']}\nDice 2 : {diceroll()['dice2']}")
+print(f"Dice 1 : {diceroll()['dice1']}\n"
+    f"Dice 2 : {diceroll()['dice2']}")
 # print(f"Polarity : {polarity()[0]+48^4}")
 print(f"Polarity : {polarity()[2]}")
+print(f"Coinflip : {polarity()[3]}")
 
 """
 Roll Dice

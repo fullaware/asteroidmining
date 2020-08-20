@@ -7,23 +7,25 @@ def asteroid_builder():
     """Returns single JSON object in the following format:
 
         {
+            '_id': '42be277a-af74-4ff7-9409-eea5dce73b04',
+            'mass': 3170000000000,
             'class': 'C',
             'ice': 1580000000000,
-            '_id': '42be277a-af74-4ff7-9409-eea5dce73b04',
-            'iron': 130000000000,
-            'mass': 3170000000000,
             'silicate': 380000000000,
+            'iron': 130000000000,
             'slag': 1080000000000
         }
 
-    sequences
+    Sequences:
     ---------
         randomly generate mass
         randomly assign materials to random range of overall mass by priority of asteroid type
         build and return JSON object
 
-    plans
+    TODO:
     -----
+        * Design JSON blueprint
+        * Randomly generate all asteroid elements from JSON blueprint.
     """
 
     def percent_of(percent, whole):
@@ -162,3 +164,7 @@ def asteroid_builder():
     }
 
     return json_composition
+
+
+if __name__ == "__main__":
+    asteroid_builder()

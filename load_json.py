@@ -22,8 +22,10 @@ def load_json(lookup_id=None):
         data = json.load(json_file)
         for miner in data['miner']:
             print(f"miner_id : {miner['_id']}")
-            print(f"\tpower : {miner['power']}")
+            print(f"\ttype : {miner['type']}")
             print(f"\tvalue : {miner['value']}")
+            print(f"\tpower : {miner['power']}")
+
 
         for asteroid in data['asteroid']:
             if lookup_id is None:
