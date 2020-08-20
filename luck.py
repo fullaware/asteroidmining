@@ -20,13 +20,13 @@ runofluck # Count/MaxLimit moves this should effect
 
 def diceroll(sides=6, max_count=90):
     roll = {}
-    
+
     for _ in range(0, max_count, 1):
         random.seed()
-        dice1 = random.randint(1,sides)
+        dice1 = random.randint(1, sides)
         random.seed()
-        dice2 = random.randint(1,sides)
-    
+        dice2 = random.randint(1, sides)
+
     roll['dice1'] = dice1
     roll['dice2'] = dice2
     # print(dice1, dice2)
@@ -51,11 +51,11 @@ def polarity(max_count=90):
     return pol
 
 
-
 def coinflip():
     pass
 
-print(f"Dice 1 : {diceroll()['dice1']}\nDice 2 : {diceroll()['dice2']}" )
+
+print(f"Dice 1 : {diceroll()['dice1']}\nDice 2 : {diceroll()['dice2']}")
 # print(f"Polarity : {polarity()[0]+48^4}")
 print(f"Polarity : {polarity()[2]}")
 
