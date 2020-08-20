@@ -1,8 +1,13 @@
 import json
 import random as r
 
-def mine_asteroid(asteroid, kgs):
-    """Take single asteroid JSON object, remove int(kgs) from random elements, return object with reduced weights.
+
+def mine_asteroid(asteroid=None, power=1):
+    """Take single asteroid JSON object, remove int(power) from random elements, return object with reduced weights.
+
+    1 power = 1 kg of mass/material removed
+
+    MAX int(power) = 10000
 
     sequences
     ---------
@@ -11,15 +16,29 @@ def mine_asteroid(asteroid, kgs):
         deduct 1 (kg) from mass
         repeat x times
     """
+    if asteroid is None:
+        asteroid = {
+            "class": "C",
+            "ice": 1580000000000,
+            "id": "42be277a-af74-4ff7-9409-eea5dce73b04",
+            "iron": 130000000000,
+            "mass": 3170000000000,
+            "silicate": 380000000000,
+            "slag": 1080000000000
+        }
+
+    if power > 10000:
+        power = 10000
+
     mining_list = ['ice', 'silicate', 'iron', 'slag']
 
-    for _ in range(kgs):
+    for _ in range(power):
         def mine_asteroid():
             asteroid[f'{mine_extract}'] -= 1
-            #print(f"mined_material {mine_extract} : {asteroid[f'{mine_extract}']}")
+            # print(f"mined_material {mine_extract} : {asteroid[f'{mine_extract}']}")
 
             asteroid['mass'] -= 1
-            #print(f"mined_mass : {asteroid['mass']}")
+            # print(f"mined_mass : {asteroid['mass']}")
         r.seed()
         mine_extract = ''.join(r.choices(mining_list, weights=None, k=1))
         if asteroid[f'{mine_extract}'] > 0:
@@ -30,6 +49,17 @@ def mine_asteroid(asteroid, kgs):
             mine_extract = ''.join(r.choices(mining_list, weights=None, k=1))
             mine_asteroid()
 
+        json_composition = {
+            "id": asteroid["id"],
+            "class": asteroid["class"],
+            "mass": asteroid["mass"],
+            "ice": asteroid["ice"],
+            "iron": asteroid["iron"],
+            "silicate": asteroid["silicate"],
+            "slag": asteroid["slag"]
+        }
+
+    return json_composition
     # for asteroid in data['asteroid']:
     #     if asteroid['ice'] or asteroid['iron'] == 0:
     #         print(f"asteroid id : {asteroid['id']}\n"

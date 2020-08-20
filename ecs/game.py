@@ -30,7 +30,10 @@
     Next round gives you ore refinery for processing iron.
     Next round gives you 3 more mining ships with ability to process their own fuel from ice
 
-    
+    Asteroids will have a speed, this speed determines how long you can safely mine materials
+    and return to base.
+    Speed of travel to the asteroid and away laden with material is based on the 
+    power of the vessel.  Power used for mining and engines.
 """
 
 """
@@ -43,12 +46,12 @@
 """
 
 struct Entity {
-    unsigned int id;
+    unsigned int id
 }
 
 struct HealthComponent {
-    int currentHealth;
-    int maxHealth;
+    int currentHealth
+    int maxHealth
 }
 """
     Component   Description
@@ -60,30 +63,37 @@ struct HealthComponent {
     Follow      Who to follow (entity)
 """
 
-class EntityManager: { pass }
 
-class HealthManager: { pass }
+class EntityManager:
+    {pass}
+
+
+class HealthManager:
+    {pass}
+
 
 foreach(entity hit by bomb):
-    HealthComponent hp = entity.getHealth();
-    hp.maxHealth = hp.maxHealth * 0.8;
+    HealthComponent hp = entity.getHealth()
+    hp.maxHealth = hp.maxHealth * 0.8
 
 struct Transform {
-    int x;
-    int y;
+    int x
+    int y
 }
 struct Motion {
-    Vec2 velocity;
-    Vec2 acceleration;
+    Vec2 velocity
+    Vec2 acceleration
 }
 
 # Movement System
 void update(int dt){
     for(entity in m_entities){
-        TransformComponent position = entity.getTransform();
-        MotionComponent motion = entity.getMotion();        position.x += motion.velocity.x;
-        position.y += motion.velocity.y;        motion.velocity.x += motion.acceleration.x;
-        motion.velocity.y += motion.acceleration.y;
+        TransformComponent position = entity.getTransform()
+        MotionComponent motion = entity.getMotion()
+        position.x += motion.velocity.x
+        position.y += motion.velocity.y
+        motion.velocity.x += motion.acceleration.x
+        motion.velocity.y += motion.acceleration.y
     }
 }
 

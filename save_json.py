@@ -38,10 +38,10 @@ with open('data/data.json', 'r') as json_file:
 
     for asteroid in data['asteroid']:
         print(f"asteroid id : {asteroid['id']}\n"
-                f"\tclass : {asteroid['class']}\n"
-                f"\tmass kg : {asteroid['mass']}\n"
-                f"\tice kg : {asteroid['ice']}\n"
-                f"\tsilicate kg : {asteroid['silicate']}\n"
-                f"\tiron kg : {asteroid['iron']}\n"
-                f"\tslag kg : {asteroid['slag']}\n"
-                )
+              f"\tclass : {asteroid['class']}\n"
+              f"\tmass kg : {asteroid['mass']}\n"
+              f"\tice kg : {asteroid['ice']}\n"
+              f"\tsilicate kg : {asteroid['silicate']}\n"
+              f"\tiron kg : {asteroid['iron']}\n"
+              f"\tslag kg : {asteroid['slag']}\n"
+              )

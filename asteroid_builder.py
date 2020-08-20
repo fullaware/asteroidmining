@@ -21,6 +21,9 @@ def asteroid_builder():
         randomly generate mass
         randomly assign materials to random range of overall mass by priority of asteroid type
         build and return JSON object
+
+    plans
+    -----
     """
 
     def percent_of(percent, whole):
@@ -107,7 +110,7 @@ def asteroid_builder():
         asteroid_comp['iron'] = percent_of(r.randint(1, 5), asteroid_mass)
         asteroid_comp['silicate'] = percent_of(r.randint(4, 15), asteroid_mass)
         asteroid_redux_mass = asteroid_mass - asteroid_comp['ice']
-        asteroid_redux_mass -=  asteroid_comp['iron']
+        asteroid_redux_mass -= asteroid_comp['iron']
         asteroid_redux_mass -= asteroid_comp['silicate']
 
         if asteroid_redux_mass <= 0:
@@ -123,8 +126,8 @@ def asteroid_builder():
             percent_of(r.randint(50, 80), asteroid_mass))
 
         asteroid_redux_mass = asteroid_mass - asteroid_comp['silicate']
-        asteroid_redux_mass -=  asteroid_comp['ice']
-        asteroid_redux_mass -=  asteroid_comp['iron']
+        asteroid_redux_mass -= asteroid_comp['ice']
+        asteroid_redux_mass -= asteroid_comp['iron']
 
         if asteroid_redux_mass <= 0:
             asteroid_comp['slag'] = 0
