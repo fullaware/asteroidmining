@@ -18,11 +18,11 @@ def mine_asteroid(asteroid=None, power=1):
     """
     if asteroid is None:
         asteroid = {
+            "_id": "42be277a-af74-4ff7-9409-eea5dce73b04",
             "class": "C",
-            "ice": 1580000000000,
-            "id": "42be277a-af74-4ff7-9409-eea5dce73b04",
-            "iron": 130000000000,
             "mass": 3170000000000,
+            "ice": 1580000000000,
+            "iron": 130000000000,
             "silicate": 380000000000,
             "slag": 1080000000000
         }
@@ -50,7 +50,7 @@ def mine_asteroid(asteroid=None, power=1):
             mine_asteroid()
 
         json_composition = {
-            "id": asteroid["id"],
+            "_id": asteroid["_id"],
             "class": asteroid["class"],
             "mass": asteroid["mass"],
             "ice": asteroid["ice"],
@@ -62,7 +62,7 @@ def mine_asteroid(asteroid=None, power=1):
     return json_composition
     # for asteroid in data['asteroid']:
     #     if asteroid['ice'] or asteroid['iron'] == 0:
-    #         print(f"asteroid id : {asteroid['id']}\n"
+    #         print(f"asteroid_id : {asteroid['_id']}\n"
     #               f"\tclass : {asteroid['class']}\n"
     #               f"\tmass \t: {asteroid['mass']}\n"
     #               f"\tice \t: {asteroid['ice']}\n"

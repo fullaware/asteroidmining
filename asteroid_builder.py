@@ -9,7 +9,7 @@ def asteroid_builder():
         {
             'class': 'C',
             'ice': 1580000000000,
-            'id': '42be277a-af74-4ff7-9409-eea5dce73b04',
+            '_id': '42be277a-af74-4ff7-9409-eea5dce73b04',
             'iron': 130000000000,
             'mass': 3170000000000,
             'silicate': 380000000000,
@@ -152,7 +152,7 @@ def asteroid_builder():
             asteroid_comp['slag'] = asteroid_redux_mass
 
     json_composition = {
-        'id': str(uuid4()),
+        '_id': str(uuid4()),
         'class': asteroid_class,
         'mass': mass_expand(asteroid_mass),
         'ice': mass_expand(asteroid_comp['ice']),
