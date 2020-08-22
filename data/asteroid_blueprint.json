@@ -1,0 +1,110 @@
+{
+    "population": {
+        "C": 75,
+        "S": 17,
+        "M": 10
+    },
+    "elements": {
+        "ice": {
+            "types": {
+                "C": [
+                    20,
+                    30
+                ],
+                "S": [
+                    0,
+                    10
+                ]
+            },
+            "uses": "Water and other elements for life; Nitrogen, Potassium, Phosphorus. Fertilizers.",
+            "tech": [
+                "Oxygen",
+                "Fuel",
+                "Manufacturing",
+                "Farming"
+            ]
+        },
+        "iron": {
+            "types": {
+                "M": [
+                    40,
+                    80
+                ],
+                "S": [
+                    0,
+                    20
+                ]
+            },
+            "uses": "",
+            "tech": [
+                "Forge",
+                "Manufacturing",
+                "Steel"
+            ]
+        },
+        "olivine": {
+            "types": {
+                "C": [
+                    0,
+                    20
+                ]
+            },
+            "uses": "Sequester CO2 by mineral reactions, called enhanced weathering. Removal by reactions with olivine is an attractive option, because it is widely available and reacts easily with the (acid) CO2 from the atmosphere. When olivine is crushed, it weathers completely within a few years, depending on the grain size. All the CO2 that is produced by burning one liter of oil can be sequestered by less than one liter of olivine. The reaction is exothermic but slow. To recover the heat produced by the reaction to produce electricity, a large volume of olivine must be thermally well-isolated. The end-products of the reaction are silicon dioxide, magnesium carbonate, and small amounts of iron oxide. Olivine is used as a substitute for dolomite in steel works. The aluminium foundry industry uses olivine sand to cast objects in aluminium. Olivine sand requires less water than silica sands while still holding the mold together during handling and pouring of the metal. Less water means less gas (steam) to vent from the mold as metal is poured into the mold.",
+            "tech": [
+                "Forge",
+                "Manufacturing",
+                "O2 scrubbers"
+            ]
+        },
+        "nickel": {
+            "types": {
+                "M": [
+                    40,
+                    80
+                ],
+                "S": [
+                    0,
+                    20
+                ]
+            },
+            "uses": "Nickel increases an alloy's resistance to corrosion and its ability to withstand extreme temperatures, equipment and parts made of nickel-bearing alloys are often used in harsh environments, such as those in chemical plants, petroleum refineries, jet engines, power generation facilities, and offshore installations. Medical equipment, cookware, and cutlery are often made of stainless steel because it is easy to clean and sterilize.  There is 350 kg of nickel per Tesla vehicle.",
+            "tech": [
+                "Forge",
+                "Manufacturing",
+                "Battery",
+                "Stainless Steel",
+                "Electronics"
+            ]
+        },
+        "silicates": {
+            "types": {
+                "C": [
+                    60,
+                    70
+                ],
+                "S": [
+                    30,
+                    40
+                ]
+            },
+            "uses": "",
+            "tech": [
+                "Manufacturing",
+                "Electronics"
+            ]
+        },
+        "oxides": {
+            "types": {
+                "C": [
+                    10,
+                    20
+                ]
+            },
+            "uses": "metal oxides could one day replace semiconductor materials that are commonly used today in processors. Now, for the first time, researchers were able to observe how electronic charge excitation changes electron spin in metal oxides in an ultrafast and inphase manner. https://www.sciencedaily.com/releases/2020/08/200819102813.htm",
+            "tech": [
+                "Oxygen",
+                "Electronics"
+            ]
+        }
+    }
+}
