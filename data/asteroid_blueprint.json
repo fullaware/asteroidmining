@@ -2,14 +2,14 @@
     "population": {
         "C": 75,
         "S": 17,
-        "M": 10
+        "M": 6
     },
     "elements": {
         "ice": {
             "types": {
                 "C": [
-                    20,
-                    30
+                    10,
+                    22
                 ],
                 "S": [
                     0,
@@ -33,9 +33,13 @@
                 "S": [
                     0,
                     20
+                ],
+                "C": [
+                    25,
+                    30
                 ]
             },
-            "uses": "",
+            "uses": "http://www.usesof.net/uses-of-iron.html",
             "tech": [
                 "Forge",
                 "Manufacturing",
@@ -54,6 +58,46 @@
                 "Forge",
                 "Manufacturing",
                 "O2 scrubbers"
+            ]
+        },
+        "platinum": {
+            "types": {
+                "M": [
+                    40,
+                    80
+                ],
+                "S": [
+                    0,
+                    20
+                ]
+            },
+            "uses": "Nickel increases an alloy's resistance to corrosion and its ability to withstand extreme temperatures, equipment and parts made of nickel-bearing alloys are often used in harsh environments, such as those in chemical plants, petroleum refineries, jet engines, power generation facilities, and offshore installations. Medical equipment, cookware, and cutlery are often made of stainless steel because it is easy to clean and sterilize.  There is 350 kg of nickel per Tesla vehicle.",
+            "tech": [
+                "Forge",
+                "Manufacturing",
+                "Battery",
+                "Stainless Steel",
+                "Electronics"
+            ]
+        },
+        "gold": {
+            "types": {
+                "M": [
+                    40,
+                    80
+                ],
+                "S": [
+                    0,
+                    20
+                ]
+            },
+            "uses": "Nickel increases an alloy's resistance to corrosion and its ability to withstand extreme temperatures, equipment and parts made of nickel-bearing alloys are often used in harsh environments, such as those in chemical plants, petroleum refineries, jet engines, power generation facilities, and offshore installations. Medical equipment, cookware, and cutlery are often made of stainless steel because it is easy to clean and sterilize.  There is 350 kg of nickel per Tesla vehicle.",
+            "tech": [
+                "Forge",
+                "Manufacturing",
+                "Battery",
+                "Stainless Steel",
+                "Electronics"
             ]
         },
         "nickel": {
@@ -98,12 +142,72 @@
                 "C": [
                     10,
                     20
+                ],
+                "M": [
+                    10,
+                    20
                 ]
             },
             "uses": "metal oxides could one day replace semiconductor materials that are commonly used today in processors. Now, for the first time, researchers were able to observe how electronic charge excitation changes electron spin in metal oxides in an ultrafast and inphase manner. https://www.sciencedaily.com/releases/2020/08/200819102813.htm",
             "tech": [
                 "Oxygen",
                 "Electronics"
+            ]
+        },
+        "slag": {
+            "types": {
+                "C": [],
+                "S": [],
+                "M": []
+            },
+            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "tech": []
+        },
+        "cobalt": {
+            "types": {
+                "C": [],
+                "S": [],
+                "M": []
+            },
+            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "tech": [
+                "Oxygen",
+                "Electronics"
+            ]
+        },
+        "nitrogen": {
+            "types": {
+                "C": [],
+                "S": [],
+                "M": []
+            },
+            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "tech": [
+                "Fuel",
+                "Farming"
+            ]
+        },
+        "hydrogen": {
+            "types": {
+                "C": [],
+                "S": [],
+                "M": []
+            },
+            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "tech": [
+                "Fuel",
+                "Electronics"
+            ]
+        },
+        "ammonia": {
+            "types": {
+                "C": [],
+                "S": [],
+                "M": []
+            },
+            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "tech": [
+                "Farming"
             ]
         }
     }
