@@ -1,12 +1,12 @@
 {
-    "type_pop": {
+    "spectral_pop": {
         "C": 75,
         "S": 17,
         "M": 6
     },
     "elements": {
         "ice": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 22
@@ -25,7 +25,7 @@
             ]
         },
         "iron": {
-            "types": {
+            "spectral_class": {
                 "M": {
                     "min": 40,
                     "max": 80
@@ -47,7 +47,7 @@
             ]
         },
         "olivine": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 0,
                     "max": 20
@@ -61,7 +61,7 @@
             ]
         },
         "platinum": {
-            "types": {
+            "spectral_class": {
                 "M": {
                     "min": 40,
                     "max": 80
@@ -81,7 +81,7 @@
             ]
         },
         "gold": {
-            "types": {
+            "spectral_class": {
                 "M": {
                     "min": 40,
                     "max": 80
@@ -101,7 +101,7 @@
             ]
         },
         "nickel": {
-            "types": {
+            "spectral_class": {
                 "M": {
                     "min": 40,
                     "max": 80
@@ -121,7 +121,7 @@
             ]
         },
         "silicates": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 60,
                     "max": 70
@@ -138,7 +138,7 @@
             ]
         },
         "oxides": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
@@ -155,7 +155,7 @@
             ]
         },
         "slag": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
@@ -173,7 +173,7 @@
             "tech": []
         },
         "cobalt": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
@@ -194,7 +194,7 @@
             ]
         },
         "nitrogen": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
@@ -215,7 +215,7 @@
             ]
         },
         "hydrogen": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
@@ -236,7 +236,7 @@
             ]
         },
         "ammonia": {
-            "types": {
+            "spectral_class": {
                 "C": {
                     "min": 10,
                     "max": 20
