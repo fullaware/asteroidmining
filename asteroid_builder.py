@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import json
 from uuid import uuid4
 import random as r

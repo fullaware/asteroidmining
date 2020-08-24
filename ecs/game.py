@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
     Getting into space is expensive and risky
     Running a mining operation is expensive and risky

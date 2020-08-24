@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Parse JSON file with nested objects into dictionaries
 Save dictionaries to nested JSON objects into file
 

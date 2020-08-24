@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Each time a 'turn' is taken the qualifying events should be weighed to see which one activates.
 
@@ -13,9 +14,5 @@ Some events should occur as a result of triggering a series:
 game_in_play = True
 
 while game_in_play:
-    
+
     event_list = {}
-
-
-
-

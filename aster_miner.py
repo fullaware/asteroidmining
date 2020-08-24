@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Take 2 objects; Miner & Asteroid
 Assign attributes:

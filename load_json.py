@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import json
 
 """
@@ -25,7 +26,6 @@ def load_json(lookup_id=None):
             print(f"\ttype : {miner['type']}")
             print(f"\tvalue : {miner['value']}")
             print(f"\tpower : {miner['power']}")
-
 
         for asteroid in data['asteroid']:
             if lookup_id is None:

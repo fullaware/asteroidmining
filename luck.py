@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Various functions to produce random luck results;
 
 diceroll(sides, max_count)
@@ -51,8 +52,9 @@ def polarity(max_count=45):
             pol.append('heads')
     return pol
 
+
 print(f"Dice 1 : {diceroll()['dice1']}\n"
-    f"Dice 2 : {diceroll()['dice2']}")
+      f"Dice 2 : {diceroll()['dice2']}")
 # print(f"Polarity : {polarity()[0]+48^4}")
 print(f"Polarity : {polarity()[2]}")
 print(f"Coinflip : {polarity()[3]}")

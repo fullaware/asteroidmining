@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
 import json
 from uuid import uuid4
 import random as r
 
-def ship_builder(ship_type='miner',ship_value=9000000,ship_power=1000):
+
+def ship_builder(ship_type='miner', ship_value=9000000, ship_power=1000):
     """Returns single JSON object in the following format:
 
         {
