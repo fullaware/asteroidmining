@@ -2,7 +2,9 @@
 import json
 from uuid import uuid4
 import random as r
+from load_blueprint import LoadBlueprint
 
+bp = LoadBlueprint()
 
 def asteroid_builder():
     """Returns single JSON object in the following format:
@@ -90,10 +92,15 @@ def asteroid_builder():
         M = highest metal content (iron and platinum group)
             M-type Some, but not all, are made of nickel–iron, either pure or mixed with small amounts of stone 10% of asteroids
     """
+
+    # asteroid_class_choices = ['C', 'S', 'M'] # TODO: Build from blueprint
+    # asteroid_class_weights = (75, 17, 10) # TODO: Build from blueprint
+
+
     asteroid_comp = {}
     r.seed()
     asteroid_class = ''.join(
-        r.choices(['C', 'S', 'M'], weights=(75, 17, 10), k=1))
+        r.choices(bp.blueprint_class_choices, weights=bp.blueprint_class_weights, k=1))
 
     r.seed()
 
@@ -107,6 +114,10 @@ def asteroid_builder():
         TODO: Add unique provisional designation names https://en.wikipedia.org/wiki/Provisional_designation_in_astronomy
 
     """
+    bp_asteriods_json = json.loads(bp.blueprint_asteriods)
+
+    for element, element_ranges in bp_asteriods_json[asteroid_class].items():
+        print(element, element_ranges)
     if asteroid_class == 'C':
 
         asteroid_comp['ice'] = percent_of(r.randint(50, 75), asteroid_mass)
@@ -114,39 +125,6 @@ def asteroid_builder():
         asteroid_comp['silicate'] = percent_of(r.randint(4, 15), asteroid_mass)
         asteroid_redux_mass = asteroid_mass - asteroid_comp['ice']
         asteroid_redux_mass -= asteroid_comp['iron']
-        asteroid_redux_mass -= asteroid_comp['silicate']
-
-        if asteroid_redux_mass <= 0:
-            asteroid_comp['slag'] = 0
-        else:
-            asteroid_comp['slag'] = asteroid_redux_mass
-
-    elif asteroid_class == 'S':
-        asteroid_comp['ice'] = int(percent_of(r.randint(5, 10), asteroid_mass))
-        asteroid_comp['iron'] = int(
-            percent_of(r.randint(1, 4), asteroid_mass))
-        asteroid_comp['silicate'] = int(
-            percent_of(r.randint(50, 80), asteroid_mass))
-
-        asteroid_redux_mass = asteroid_mass - asteroid_comp['silicate']
-        asteroid_redux_mass -= asteroid_comp['ice']
-        asteroid_redux_mass -= asteroid_comp['iron']
-
-        if asteroid_redux_mass <= 0:
-            asteroid_comp['slag'] = 0
-        else:
-            asteroid_comp['slag'] = asteroid_redux_mass
-
-    else:  # asteroid_class == 'M'
-        asteroid_comp['ice'] = int(percent_of(
-            r.randint(1, 4), asteroid_mass))
-        asteroid_comp['iron'] = int(
-            percent_of(r.randint(50, 90), asteroid_mass))
-        asteroid_comp['silicate'] = int(
-            percent_of(r.randint(1, 4), asteroid_mass))
-
-        asteroid_redux_mass = asteroid_mass - asteroid_comp['iron']
-        asteroid_redux_mass -= asteroid_comp['ice']
         asteroid_redux_mass -= asteroid_comp['silicate']
 
         if asteroid_redux_mass <= 0:
@@ -168,4 +146,4 @@ def asteroid_builder():
 
 
 if __name__ == "__main__":
-    asteroid_builder()
+    print(asteroid_builder())
