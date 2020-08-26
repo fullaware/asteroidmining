@@ -19,8 +19,7 @@ def mine_asteroid(asteroid=None, power=1):
 
     TODO:
     -----
-        * Design JSON blueprint
-        * Randomly mine all asteroid elements from JSON blueprint.
+
     """
     if asteroid is None:
         asteroid = {'_id': '6a5f6bec-63b5-48f6-9156-0ad57022a00c',
@@ -44,7 +43,7 @@ def mine_asteroid(asteroid=None, power=1):
     for element_dict in asteroid['elements']:
         for elements in element_dict.keys():
             element_choices.append(elements)
-    # print(element_choices)
+
     for _ in range(power):
         def remove_mass():
             asteroid['elements'][idx][elements] -= 1
@@ -53,34 +52,20 @@ def mine_asteroid(asteroid=None, power=1):
         mine_extract = ''.join(r.choices(element_choices, weights=None, k=1))
 
         for idx, element_dict in enumerate(asteroid['elements']):
-            #print(idx,element_dict)
             for elements, mass in element_dict.items():
-                #print(elements, mass)
                 if elements == mine_extract:
                     if mass > 0:
                         remove_mass()
                     else:
                         r.seed()
                         element_choices.remove(mine_extract)
-                        mine_extract = ''.join(r.choices(element_choices, weights=None, k=1))
+                        mine_extract = ''.join(
+                            r.choices(element_choices, weights=None, k=1))
                         remove_mass()
 
         json_composition = asteroid
 
     return json_composition
-    # for asteroid in data['asteroid']:
-    #     if asteroid['ice'] or asteroid['iron'] == 0:
-    #         print(f"asteroid_id : {asteroid['_id']}\n"
-    #               f"\tclass : {asteroid['class']}\n"
-    #               f"\tmass \t: {asteroid['mass']}\n"
-    #               f"\tice \t: {asteroid['ice']}\n"
-    #               f"\tsil \t: {asteroid['silicate']}\n"
-    #               f"\tiron \t: {asteroid['iron']}\n"
-    #               f"\tslag \t: {asteroid['slag']}\n"
-    #               )
-
-    # with open('data/data.json', 'w') as json_outfile:
-    #     json.dump(data, json_outfile, indent=4)
 
 
 if __name__ == "__main__":

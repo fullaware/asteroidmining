@@ -8,6 +8,7 @@ from pprint import pprint
 
 bp = LoadBlueprint()
 
+
 def asteroid_builder():
     """Returns single JSON object
 
@@ -84,7 +85,6 @@ def asteroid_builder():
             M-type Some, but not all, are made of nickel–iron, either pure or mixed with small amounts of stone 10% of asteroids
     """
 
-
     asteroid_comp = {}
     r.seed()
     asteroid_class = ''.join(
@@ -98,7 +98,6 @@ def asteroid_builder():
         slag should always be last and is "leftover" from the initial mass assignment priority
         make sure MAX of randint = < 100 to always allow for slag
 
-        TODO: Create system to take blueprint of class types, their likely material makeup ranges instead of static if's
         TODO: Add unique provisional designation names https://en.wikipedia.org/wiki/Provisional_designation_in_astronomy
 
     """
@@ -107,21 +106,20 @@ def asteroid_builder():
 
     mass_total = 0
     for element, element_ranges in bp_asteriods_json[asteroid_class].items():
-        #print(element, element_ranges)
-        asteroid_comp[element] = percent_of(r.uniform(element_ranges[0], element_ranges[1]), asteroid_mass)
-        asteroid_element_expand = int(mass_expand(asteroid_comp[element]))
-        elements_list.append({element:asteroid_element_expand})
-        mass_total += asteroid_element_expand
 
-    #print(mass_expand(asteroid_mass),mass_totals)
+        asteroid_comp[element] = percent_of(
+            r.uniform(element_ranges[0], element_ranges[1]), asteroid_mass)
+        asteroid_element_expand = int(mass_expand(asteroid_comp[element]))
+        elements_list.append({element: asteroid_element_expand})
+        mass_total += asteroid_element_expand
 
     json_composition = {
         "_id": str(uuid4()),
         "class": asteroid_class,
         "mass": mass_total,
-        "elements" : elements_list
+        "elements": elements_list
     }
-    
+
     return json_composition
 
 
