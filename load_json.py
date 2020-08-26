@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 import json
+from mine_asteroid import mine_asteroid
 
 """
     Read from data.json
 """
 
 
-def print_asteroid(asteroid):
-    print(f"asteroid_id : {asteroid['_id']}\n"
-          f"\tclass : {asteroid['class']}\n"
-          f"\tmass kg : {asteroid['mass']}\n"
-          f"\tice kg : {asteroid['ice']}\n"
-          f"\tsilicate kg : {asteroid['silicate']}\n"
-          f"\tiron kg : {asteroid['iron']}\n"
-          f"\tslag kg : {asteroid['slag']}\n"
-          )
+# def print_asteroid(asteroid):
+#     print(f"asteroid_id : {asteroid['_id']}\n"
+#           f"\tclass : {asteroid['class']}\n"
+#           f"\tmass kg : {asteroid['mass']}\n"
+#           f"\tice kg : {asteroid['ice']}\n"
+#           f"\tsilicate kg : {asteroid['silicate']}\n"
+#           f"\tiron kg : {asteroid['iron']}\n"
+#           f"\tslag kg : {asteroid['slag']}\n"
+#           )
 
 
 def load_json(lookup_id=None):
@@ -28,13 +29,12 @@ def load_json(lookup_id=None):
             print(f"\tpower : {miner['power']}")
 
         for asteroid in data['asteroid']:
-            if lookup_id is None:
-                print_asteroid(asteroid)
-            else:
-                if asteroid['_id'] == lookup_id:
-                    print_asteroid(asteroid)
-
+            if asteroid['_id'] == lookup_id:
+                    print(asteroid)
+                    mine_asteroid(asteroid,1000)
+                    print(asteroid)
+                
 
 if __name__ == "__main__":
     # load_json("f8f1c72d-9e51-476e-8632-d5f8ee0a3c9c")
-    load_json()
+    load_json("33d00f32-b6fe-404d-90ef-71f0f1f1af24")

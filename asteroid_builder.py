@@ -2,22 +2,14 @@
 import json
 from uuid import uuid4
 import random as r
+from collections import ChainMap
 from load_blueprint import LoadBlueprint
+from pprint import pprint
 
 bp = LoadBlueprint()
 
 def asteroid_builder():
-    """Returns single JSON object in the following format:
-
-        {
-            '_id': '42be277a-af74-4ff7-9409-eea5dce73b04',
-            'mass': 3170000000000,
-            'class': 'C',
-            'ice': 1580000000000,
-            'silicate': 380000000000,
-            'iron': 130000000000,
-            'slag': 1080000000000
-        }
+    """Returns single JSON object
 
     Sequences:
     ---------
@@ -27,7 +19,6 @@ def asteroid_builder():
 
     TODO:
     -----
-        * Design JSON blueprint
         * Randomly generate all asteroid elements from JSON blueprint.
     """
 
@@ -41,7 +32,7 @@ def asteroid_builder():
         percent_of_whole = round((percent * whole) / 100.0)
         if percent_of_whole == 0:
             percent_of_whole = 1
-        return percent_of_whole
+        return (percent * whole) / 100.0
 
     """
         Given the weights of known asteroids we will randomize up to 6 digits, then 
@@ -76,7 +67,7 @@ def asteroid_builder():
     r.seed()
     mass_min = 10
     mass_max = int(''.join(r.choices(
-        ['99', '999', '9999', '99999', '999999'], weights=(25, 25, 15, 5, 2), k=1)))
+        ['99', '999', '9999', '99999'], weights=(25, 25, 15, 2), k=1)))
 
     r.seed()
     asteroid_mass = r.randint(mass_min, mass_max)
@@ -92,9 +83,6 @@ def asteroid_builder():
         M = highest metal content (iron and platinum group)
             M-type Some, but not all, are made of nickel–iron, either pure or mixed with small amounts of stone 10% of asteroids
     """
-
-    # asteroid_class_choices = ['C', 'S', 'M'] # TODO: Build from blueprint
-    # asteroid_class_weights = (75, 17, 10) # TODO: Build from blueprint
 
 
     asteroid_comp = {}
@@ -115,35 +103,27 @@ def asteroid_builder():
 
     """
     bp_asteriods_json = json.loads(bp.blueprint_asteriods)
+    elements_list = []
 
+    mass_total = 0
     for element, element_ranges in bp_asteriods_json[asteroid_class].items():
-        print(element, element_ranges)
-    if asteroid_class == 'C':
+        #print(element, element_ranges)
+        asteroid_comp[element] = percent_of(r.uniform(element_ranges[0], element_ranges[1]), asteroid_mass)
+        asteroid_element_expand = int(mass_expand(asteroid_comp[element]))
+        elements_list.append({element:asteroid_element_expand})
+        mass_total += asteroid_element_expand
 
-        asteroid_comp['ice'] = percent_of(r.randint(50, 75), asteroid_mass)
-        asteroid_comp['iron'] = percent_of(r.randint(1, 5), asteroid_mass)
-        asteroid_comp['silicate'] = percent_of(r.randint(4, 15), asteroid_mass)
-        asteroid_redux_mass = asteroid_mass - asteroid_comp['ice']
-        asteroid_redux_mass -= asteroid_comp['iron']
-        asteroid_redux_mass -= asteroid_comp['silicate']
-
-        if asteroid_redux_mass <= 0:
-            asteroid_comp['slag'] = 0
-        else:
-            asteroid_comp['slag'] = asteroid_redux_mass
+    #print(mass_expand(asteroid_mass),mass_totals)
 
     json_composition = {
-        '_id': str(uuid4()),
-        'class': asteroid_class,
-        'mass': mass_expand(asteroid_mass),
-        'ice': mass_expand(asteroid_comp['ice']),
-        'iron': mass_expand(asteroid_comp['iron']),
-        'silicate': mass_expand(asteroid_comp['silicate']),
-        'slag': mass_expand(asteroid_comp['slag'])
+        "_id": str(uuid4()),
+        "class": asteroid_class,
+        "mass": mass_total,
+        "elements" : elements_list
     }
-
+    
     return json_composition
 
 
 if __name__ == "__main__":
-    print(asteroid_builder())
+    pprint(asteroid_builder())

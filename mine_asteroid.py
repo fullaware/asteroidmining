@@ -23,47 +23,49 @@ def mine_asteroid(asteroid=None, power=1):
         * Randomly mine all asteroid elements from JSON blueprint.
     """
     if asteroid is None:
-        asteroid = {
-            "_id": "42be277a-af74-4ff7-9409-eea5dce73b04",
-            "class": "C",
-            "mass": 3170000000000,
-            "ice": 1580000000000,
-            "iron": 130000000000,
-            "silicate": 380000000000,
-            "slag": 1080000000000
-        }
+        asteroid = {'_id': '6a5f6bec-63b5-48f6-9156-0ad57022a00c',
+                    'class': 'C',
+                    'mass': 1674592559127,
+                    'elements': [{'rabbits': 142659290493},
+                                 {'hats': 113557337390},
+                                 {'ninnys': 95014553453},
+                                 {'cabbage': 94892834241},
+                                 {'slag': 152402428236},
+                                 {'gungans': 98200055989},
+                                 {'sandwich': 482811749307},
+                                 {'olive': 133053279763},
+                                 {'smurfs': 213684113388},
+                                 {'silence': 148316916864}]}
 
     if power > 10000:
         power = 10000
+    element_choices = []
 
-    mining_list = ['ice', 'silicate', 'iron', 'slag']
-
+    for element_dict in asteroid['elements']:
+        for elements in element_dict.keys():
+            element_choices.append(elements)
+    # print(element_choices)
     for _ in range(power):
-        def mine_asteroid():
-            asteroid[f'{mine_extract}'] -= 1
-            # print(f"mined_material {mine_extract} : {asteroid[f'{mine_extract}']}")
-
+        def remove_mass():
+            asteroid['elements'][idx][elements] -= 1
             asteroid['mass'] -= 1
-            # print(f"mined_mass : {asteroid['mass']}")
         r.seed()
-        mine_extract = ''.join(r.choices(mining_list, weights=None, k=1))
-        if asteroid[f'{mine_extract}'] > 0:
-            mine_asteroid()
-        else:
-            r.seed()
-            mining_list.remove(f'{mine_extract}')
-            mine_extract = ''.join(r.choices(mining_list, weights=None, k=1))
-            mine_asteroid()
+        mine_extract = ''.join(r.choices(element_choices, weights=None, k=1))
 
-        json_composition = {
-            "_id": asteroid["_id"],
-            "class": asteroid["class"],
-            "mass": asteroid["mass"],
-            "ice": asteroid["ice"],
-            "iron": asteroid["iron"],
-            "silicate": asteroid["silicate"],
-            "slag": asteroid["slag"]
-        }
+        for idx, element_dict in enumerate(asteroid['elements']):
+            #print(idx,element_dict)
+            for elements, mass in element_dict.items():
+                #print(elements, mass)
+                if elements == mine_extract:
+                    if mass > 0:
+                        remove_mass()
+                    else:
+                        r.seed()
+                        element_choices.remove(mine_extract)
+                        mine_extract = ''.join(r.choices(element_choices, weights=None, k=1))
+                        remove_mass()
+
+        json_composition = asteroid
 
     return json_composition
     # for asteroid in data['asteroid']:
@@ -82,4 +84,4 @@ def mine_asteroid(asteroid=None, power=1):
 
 
 if __name__ == "__main__":
-    mine_asteroid(power=50)
+    print(mine_asteroid(power=50))
