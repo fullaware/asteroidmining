@@ -104,3 +104,10 @@ venv.bak/
 .mypy_cache/
 
 .vscode/
+
+# python venv
+include/
+share/
+/lib64
+bin/
+pyvenv.cfg
