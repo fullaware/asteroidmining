@@ -1,2 +1,5 @@
 # Classic Asteroid Game
-I'm about to make an awful mess of this repo
+
+1. ~~Blueprint based Asteroid creation~~
+2. ~~Save to JSON file~~
+3. ~~Mine asteroid by randomly selecting mineral~~
