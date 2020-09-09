@@ -1,2 +1,5 @@
 # Classic Asteroid Game
-I'm about to make an awful mess of this repo
+
+1. ~~Generate Asteroid from flexible JSON blueprint~~
+2. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
+
