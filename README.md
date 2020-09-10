@@ -1,6 +1,7 @@
 # Classic Asteroid Game
 Risks of getting lucky in space
 
+## TODO
 1. ~~Generate Asteroid from flexible JSON blueprint~~
 2. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
 3. ~~Save to a JSON file~~
@@ -46,18 +47,28 @@ Risks of getting lucky in space
    * **Will become precurser to game UI**
 7. Use database instead of JSON files for blueprints?
 
-## Version 2
+## TODO Version 2
 1. Create speed, location, distance attributes.
 1. Create base attributes `[Mineral Processing/Water, Refinery/Fuel, Forge/Metal, Miner Ships and upgrades, ]`
 1. Can only repair if has a 'Repair Drone', Repair Drones have levels that can speed time to repair in x moves.
 
 ## Game Loop
 ```
-While gameOn isTrue:
-	ORDER By EventQueueFIFO()
-		THEN EventQueuePriority
-    EXECUTE Tasks in EventQueue
+while gameOn isTrue:
+	ORDER by EventQueue().FIFO()
+		THEN ORDER by EventQueue().Priority()
+    for tasks in EventQueue():
+        EventQueue().execute()
 ```
 ## Game Logic
-traveling = unladen with any materials, if ship is hit by meteoroid, and `<shield>` isn't more powerful than impact `<Damage=[TimeToRepair,]>`
-travelingLaden = has material mass which is in 'front' during travel, will add to shield bonus, HOWEVER, depending on mass
+### MoveStates - Definitions
+Each move is categorized by what kind of actions can be executed against them.  Upon execution of the move, an 'Initiative Roll d20' and 'Luck Roll bool' are used to impact the effectiveness of the move.
+
+traveling to a destination with >10 initiative + good luck. No NEW events.
+traveling to a destination with <10 initiative + bad luck. Query Events for matching criteria, and execute.
+
+* `traveling` = unladen with any materials. If ship is hit by meteoroid, and `<shield>` isn't more powerful than impact, execute `<Damage=[TimeToRepair,]>`
+* `travelingLaden` = Since material mass is in 'front' during travel.  This will add to shield bonus.  Instead of impacting ship, it could impact the cargo and a value loss if not repaired.  Repairs can be done in transit `<Initiative + Luck>` OR stop for repairs = lost time.
+* `mining` = Each miner will execute mining on turn. `<Initiative?Luck?Power>`
+* `arrivingRescue` = Miners can be sent to rescue other miners.  They are valuable assets after all, especially if they are loaded with materials.
+* `arrivingAsteroid` = All sorts of things can go wrong/right on approach to your target. At this stage, the miner is scanning surface for optimal mining site.  
