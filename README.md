@@ -64,8 +64,8 @@ while gameOn isTrue:
 ### MoveStates - Definitions
 Each move is categorized by what kind of actions can be executed against them.  Upon execution of the move, an 'Initiative Roll d20' and 'Luck Roll bool' are used to impact the effectiveness of the move.
 
-traveling to a destination with >10 initiative + good luck. No NEW events.
-traveling to a destination with <10 initiative + bad luck. Query Events for matching criteria, and execute.
+traveling to a destination with >10 initiative + good luck. No NEW events.  
+traveling to a destination with <10 initiative + bad luck. Query Events for matching criteria, and execute.  
 
 * `traveling` = unladen with any materials. If ship is hit by meteoroid, and `<shield>` isn't more powerful than impact, execute `<Damage=[TimeToRepair,]>`
 * `travelingLaden` = Since material mass is in 'front' during travel.  This will add to shield bonus.  Instead of impacting ship, it could impact the cargo and a value loss if not repaired.  Repairs can be done in transit `<Initiative + Luck>` OR stop for repairs = lost time.
