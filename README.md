@@ -27,7 +27,13 @@ A game of getting lucky in space
     * Results: Remove `<Damage*ElementMarketValue> / <Moves> per move`
         * **Maybe all results should assume "per move" for x moves**
     * Actions: "Repairs will take `<moves>` days, extending travel to `<Destination>`."
-    * Results: 
-5. Create engine for selecting events from blueprint based on criteria of each event
-6. Create Admin portal for editing blueprints **Will become precurser to game UI**
-7. Use database instead of JSON files for blueprints?
+    * Actions: "Attempt to repair on the way? `<roll*luck>` compares to `<roll*luck>` on next move 
+6. Create engine for selecting events from blueprint based on criteria of each event
+7. Create Admin portal for editing blueprints **Will become precurser to game UI**
+8. Use database instead of JSON files for blueprints?
+
+### Version 2
+1. Create speed, location, distance attributes.
+1. Create base attributes [Mineral Processing/Water, Refinery/Fuel, Forge/Metal, Miner Ships and upgrades, ]
+
+Game Loop
