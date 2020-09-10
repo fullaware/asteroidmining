@@ -1,5 +1,5 @@
 # Classic Asteroid Game
-A game of getting lucky in space
+Risks of getting lucky in space
 
 1. ~~Generate Asteroid from flexible JSON blueprint~~
 2. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
@@ -35,5 +35,6 @@ A game of getting lucky in space
 ### Version 2
 1. Create speed, location, distance attributes.
 1. Create base attributes [Mineral Processing/Water, Refinery/Fuel, Forge/Metal, Miner Ships and upgrades, ]
+1. Can only repair if has 'Repair Drone', Repair Drones have levels that can speed time to repair in x moves.
 
 Game Loop
