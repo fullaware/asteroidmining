@@ -6,6 +6,7 @@ Risks of getting lucky in space
 2. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
 3. ~~Save to a JSON file~~
 4. Create Events JSON blueprint schema
+   * **In Progress**
 5. Create query engine for selecting events from blueprint based on criteria of each event
 6. Create Admin portal for editing blueprints
    * **Will become precurser to game UI**
