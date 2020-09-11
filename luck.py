@@ -10,6 +10,7 @@ runofluck # Count/MaxLimit moves this should effect
 
 """
 import random
+from console_colors import ConColor
 
 
 def diceroll(sides=6):
@@ -63,23 +64,31 @@ How many turns can the player survive without mediation
 """
 
 
-def random_window(luck=0):
-    range_width = 1
+def random_window(luck=0, coin=0):
+    # coin 0 bad 1 good
+    # luck 0 bad 13 good
+    range_width = 0
     range_start = 0
     range_end = 0
 
     while range_end == 0:
         # print(f"end {range_end}")
-        while range_width <= 1:
-            range_width = diceroll(19)-luck
+        while range_width <= 0:
+            if coin == 0:
+                range_width = diceroll(19) + luck
+            else:
+                luck_minus = 20-luck
+                range_width = diceroll(luck_minus)
+            if range_width > 20:
+                range_width = 20
             # print(f"width {range_width}")
-        while range_start <= 0:
-            range_start = diceroll(19)
+        while range_start < 1:
+            range_start = diceroll(21)
             # print(f"start {range_start}")
         range_end = range_start + range_width
 
-        if range_end > 20:
-            range_end = 20
+        if range_end > 21:
+            range_end = 21
 
     return range_start, range_end
 
@@ -99,45 +108,56 @@ def test_luck(max_tries=1):
             coin = polarity()[0]  # 0 bad 1 good
             # 0 bad 13 good
             if coin == 0 and luck <= 0:
-                # 100% chance of damage
+                print(f"{ConColor.RED}\tImpact imminent{ConColor.RESET}")
                 luck = 0
-                range_start = 0
-                range_end = 0
-            elif coin == 1 and luck >= 13:
-                # 0% chance of damage
-                luck = 13
                 range_start = 1
                 range_end = 20
+            elif coin == 1 and luck >= 13:
+                print(f"{ConColor.GREEN}\tLucky Duck - Dodged{ConColor.RESET}")
+                luck = 13
+                range_start = 0
+                range_end = 0
             elif coin == 0 and luck >= 1:
-                # Likely damage
+                print(f"{ConColor.RED}\tBrace for impact!{ConColor.RESET}")
                 range_width = random_window(luck)
                 range_start = range_width[0]
                 range_end = range_width[1]
                 luck -= 1
             elif coin == 1 and luck < 13:
-                # Not likely damage
+                print(f"{ConColor.YELLOW}\tEvasive maneuver!{ConColor.RESET}")
                 luck += 1
                 range_width = random_window(luck)
                 range_start = range_width[0]
                 range_end = range_width[1]
 
-            if fate not in range(range_start, range_end):
-                range_width = 0
-                range_start = 0
-                range_end = 0
+            if range_start == 0 and range_end == 0:
                 damage = 0
                 print(
-                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, range_start {range_start}, range_end {range_end}, damage {damage}, shield {shield}")
-            else:
-                damage = diceroll(6)
+                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}")
+            elif fate in range(range_start, range_end):
+                if coin == 0:
+                    damage = diceroll(6)
+                else:
+                    damage = 1
+                    if luck >= 1:
+                        luck -= 1
+                print(
+                    f"{ConColor.RED}\tHIT! Shield reduced by {damage}")
                 shield -= damage
                 print(
-                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, range_start {range_start}, range_end {range_end}, damage {damage}, shield {shield}")
+                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
                 range_width = 0
                 range_start = 0
                 range_end = 0
 
-        print(f"Turns {turns}, Luck {luck}")
+            elif fate not in range(range_start, range_end):
+                damage = 0
+                print(f"{ConColor.BLUE}\tDODGED!")
+                print(
+                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
+
+        print(f"\nWell crew, it was a good run...\n"
+              f"We survived {turns} days on autopilot, my great looks and walked away with {luck} luck.\n")
 
 
 test_luck()
