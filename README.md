@@ -16,7 +16,7 @@ Risks of getting lucky in space
 4. Create Events JSON blueprint schema
    * **In Progress**
    * DEV NOTES:
-      * [`events_blueprent.json`](data/events_blueprint.json) outline drafted, needs schema
+      * [`events_blueprint.json`](data/events_blueprint.json) outline drafted, needs schema
 5. Build "Luck" system simulator to test game logic.
    * **In Progress**
    * DEV NOTES:
