@@ -20,17 +20,29 @@ Risks of getting lucky in space
 5. Build "Luck" system simulator to test game logic.
    * **In Progress**
    * DEV NOTES:
-      * Current Luck system is based on a random width moving range within 1-20.
+      * Current Luck system is based on a random width moving range within 1-20 & coinflip (0 bad 1 good).
+         * Simple Example:  `range_width = 5, range_start = 5, range_end = 10`
       * If d20 = within range, take damage.  Good results; range of unassisted turns is 100 - 260+ but VERY hard to code.
+         * d20 = 1 & coin bad = Guaranteed damage random(1,6)
+         * d20 = 5-10 & coin bad = Damage random(1,6)
+         * d20 = 5-10 & coin good = damage is 1 due to 'evasive maneuver' 
+         * d20 != 5-10 & coin good = Dodge damage 0 due to 'evasive maneuver'
+         * d20 = 20 & coin good = Evade completely, no threat
+      * Instead of random width, limit to width options to 1,3,5,7
+      * Reverse 'Luck' range of 0 = bad 13 = good, that way the higher the bad luck the higher the modifier of bad things?
+      * OR THROW AWAY range idea and use D20 initiative, 4 fates 4d6
+         * Odd is negative
+         * Even is Positive
+         * 4 positives locks 1 d6 to positive for next round
+         * 4 positives AGAIN locks 2 d6 to positive for next round, resume 4d6
+         * Same for Negative
+      * OR THROW AWAY d20, JUST use 2d6s (FATE alternative). You roll one as positive and one as negative. Subtract the value of the negative d6 from the value of the positive one. So if you roll a 4 on the positive and 2 on the negative, that's a +2. If you roll 3 on the positive and 6 on the negative, that's a -3.  The range of that is from -5 to +5. 
 
 7. Create query engine for selecting events from blueprint based on criteria of each event
 8. Create Admin portal for editing blueprints
    * **Will become precurser to game UI**
 9. Create speed, location, distance attributes.
-D20 initiative
-4 fates 4d6
-Odd is negative
-Even is Positive
+
 
 Rescue mission finds 2 closest miners + dedicated rescue ship.
 
