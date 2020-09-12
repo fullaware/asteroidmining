@@ -16,11 +16,21 @@ Risks of getting lucky in space
 4. Create Events JSON blueprint schema
    * **In Progress**
 5. Build "Luck" system simulator to test game logic.
+6. 
    * **In Progress**
-6. Create query engine for selecting events from blueprint based on criteria of each event
-7. Create Admin portal for editing blueprints
+7. Create query engine for selecting events from blueprint based on criteria of each event
+8. Create Admin portal for editing blueprints
    * **Will become precurser to game UI**
-8. Create speed, location, distance attributes.
+9. Create speed, location, distance attributes.
+D20 initiative
+4 fates 4d6
+Odd is negative
+Even is Positive
+
+Rescue mission finds 2 closest miners + dedicated rescue ship.
+
+Each miner is equipped with a basic repair drone.
+
 
 ## TODO Version 2
 1. Create base attributes `[Mineral Processing/Water, Refinery/Fuel, Forge/Metal, Habitat, Hydroponics, Miner/Transport Ships and upgrades, ]`

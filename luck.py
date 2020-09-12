@@ -157,7 +157,7 @@ def test_luck(max_tries=1):
                     f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
 
         print(f"\nWell crew, it was a good run...\n"
-              f"We survived {turns} days on autopilot, my great looks and walked away with {luck} luck.\n")
+              f"We survived {turns} days on autopilot and my great looks.  Even walked away with {luck} luck.\n")
 
 
 test_luck()
