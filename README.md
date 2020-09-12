@@ -15,9 +15,14 @@ Risks of getting lucky in space
 3. ~~Save to a JSON file~~
 4. Create Events JSON blueprint schema
    * **In Progress**
+   * DEV NOTES:
+      * [`events_blueprent.json`](data/events_blueprint.json) outline drafted, needs schema
 5. Build "Luck" system simulator to test game logic.
-6. 
    * **In Progress**
+   * DEV NOTES:
+      * Current Luck system is based on a random width moving range within 1-20.
+      * If d20 = within range, take damage.  Good results; range of unassisted turns is 100 - 260+ but VERY hard to code.
+
 7. Create query engine for selecting events from blueprint based on criteria of each event
 8. Create Admin portal for editing blueprints
    * **Will become precurser to game UI**
