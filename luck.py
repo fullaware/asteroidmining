@@ -13,6 +13,9 @@ import random
 from console_colors import ConColor
 
 
+DEBUG = True
+
+
 def diceroll(sides=6):
     max_count = int(sides * 5)
 
@@ -73,17 +76,11 @@ def random_window(luck=0, coin=0):
 
     while range_end == 0:
         # print(f"end {range_end}")
-        while range_width <= 0:
-            if coin == 0:
-                range_width = diceroll(19) + luck
-            else:
-                luck_minus = 20-luck
-                range_width = diceroll(luck_minus)
-            if range_width > 20:
-                range_width = 20
+        while range_width < 1 or range_width > 15:
+            range_width = diceroll(10)
             # print(f"width {range_width}")
         while range_start < 1:
-            range_start = diceroll(21)
+            range_start = diceroll(10)
             # print(f"start {range_start}")
         range_end = range_start + range_width
 
@@ -91,6 +88,11 @@ def random_window(luck=0, coin=0):
             range_end = 21
 
     return range_start, range_end
+
+
+def alert_msg(msg):
+    if DEBUG:
+        print(msg)
 
 
 def test_luck(max_tries=1):
@@ -108,31 +110,33 @@ def test_luck(max_tries=1):
             coin = polarity()[0]  # 0 bad 1 good
             # 0 bad 13 good
             if coin == 0 and luck <= 0:
-                print(f"{ConColor.RED}\tImpact imminent{ConColor.RESET}")
+                alert_msg(f"{ConColor.RED}\tImpact imminent{ConColor.RESET}")
                 luck = 0
                 range_start = 1
                 range_end = 20
             elif coin == 1 and luck >= 13:
-                print(f"{ConColor.GREEN}\tLucky Duck - Dodged{ConColor.RESET}")
+                alert_msg(
+                    f"{ConColor.GREEN}\tLucky Duck - Dodged{ConColor.RESET}")
                 luck = 13
                 range_start = 0
                 range_end = 0
             elif coin == 0 and luck >= 1:
-                print(f"{ConColor.RED}\tBrace for impact!{ConColor.RESET}")
-                range_width = random_window(luck)
+                alert_msg(f"{ConColor.RED}\tBrace for impact!{ConColor.RESET}")
+                range_width = random_window(luck, coin)
                 range_start = range_width[0]
                 range_end = range_width[1]
                 luck -= 1
             elif coin == 1 and luck < 13:
-                print(f"{ConColor.YELLOW}\tEvasive maneuver!{ConColor.RESET}")
+                alert_msg(
+                    f"{ConColor.YELLOW}\tEvasive maneuver!{ConColor.RESET}")
                 luck += 1
-                range_width = random_window(luck)
+                range_width = random_window(luck, coin)
                 range_start = range_width[0]
                 range_end = range_width[1]
 
             if range_start == 0 and range_end == 0:
                 damage = 0
-                print(
+                alert_msg(
                     f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}")
             elif fate in range(range_start, range_end):
                 if coin == 0:
@@ -141,10 +145,10 @@ def test_luck(max_tries=1):
                     damage = 1
                     if luck >= 1:
                         luck -= 1
-                print(
+                alert_msg(
                     f"{ConColor.RED}\tHIT! Shield reduced by {damage}")
                 shield -= damage
-                print(
+                alert_msg(
                     f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
                 range_width = 0
                 range_start = 0
@@ -152,8 +156,8 @@ def test_luck(max_tries=1):
 
             elif fate not in range(range_start, range_end):
                 damage = 0
-                print(f"{ConColor.BLUE}\tDODGED!")
-                print(
+                alert_msg(f"{ConColor.BLUE}\tDODGED!")
+                alert_msg(
                     f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
 
         print(f"\nWell crew, it was a good run...\n"
