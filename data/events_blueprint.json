@@ -1,7 +1,6 @@
 {
     "Events": [
         {
-            "EventID": "UUID",
             "MoveState": [
                 "traveling",
                 "mining",
@@ -44,10 +43,10 @@
             "ResultsNotes": "Maybe all results should assume 'per move' for x turns"
         },
         {
-            "EventID": "UUID",
             "MoveState": [
                 "mining"
             ],
+            "LevelCheck": 1,
             "Describe": [
                 "As asteroid {asteroid_name} rotates illuminating the mining craft and the asteroids service, there is a rumbling detected.",
                 "Several small objects are ejected away from the asteroid due to the heat from the direct sunlight and the miners",
@@ -62,7 +61,6 @@
                 "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
                 "2. Repair <Luck * Damage / turns> per turn"
             ]
-
         }
     ]
 }
