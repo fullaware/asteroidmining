@@ -13,7 +13,7 @@ import random
 from console_colors import ConColor
 
 
-DEBUG = False
+DEBUG = True
 
 
 def diceroll(sides=6):
@@ -164,4 +164,4 @@ def test_luck(max_tries=1):
               f"We survived {turns} days on autopilot and my great looks.  Even walked away with {luck} luck.\n")
 
 
-test_luck(15)
+test_luck(1)
