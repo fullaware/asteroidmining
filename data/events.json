@@ -10,9 +10,9 @@
             ],
             "MoveStateNote": "If left blank, can be executed upon any move",
             "Entity": "miner",
-            "LevelCheck": 10,
+            "LevelCheck": 5,
             "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 4,
+            "LuckCheck": 7,
             "LuckCheckNote": "0 is good 13 is bad",
             "PowerCheck": 1000,
             "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
@@ -41,7 +41,7 @@
                 "3. <Initiative * Luck> on every turn until repaired"
             ],
             "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "fd46cd6b-eaca-4e3f-b800-29f38ed87476"
+            "EventID": "3ffb92d6-ef27-4f24-a704-7dc53a05c3db"
         },
         {
             "MoveState": [
@@ -73,9 +73,9 @@
             ],
             "MoveStateNote": "If left blank, can be executed upon any move",
             "Entity": "miner",
-            "LevelCheck": 2,
+            "LevelCheck": 8,
             "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 10,
+            "LuckCheck": 3,
             "LuckCheckNote": "0 is good 13 is bad",
             "PowerCheck": 1000,
             "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
@@ -104,93 +104,7 @@
                 "3. <Initiative * Luck> on every turn until repaired"
             ],
             "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "de09bd2d-14e8-4c08-9d64-4d053deea4a9"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 7,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 1,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "7c4dc3ff-6654-4892-95d3-f5eea42ba2fe"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 4,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 8,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "ead0c6eb-3c94-4e6f-bf22-1c5a46019810"
+            "EventID": "8454f809-ae11-40a7-b5a4-22fe586170b8"
         },
         {
             "MoveState": [
@@ -203,221 +117,6 @@
             "MoveStateNote": "If left blank, can be executed upon any move",
             "Entity": "miner",
             "LevelCheck": 3,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 5,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "d395ca85-742f-4771-8573-efd9ffd475fb"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 6,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 2,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "7bcca616-9e5e-449d-b76a-a28b705ef2dc"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 8,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 10,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "3a9f36c3-ba3e-46af-a71f-f26901d664be"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 8,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 8,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "994bc7eb-0fd7-48e1-8eb8-5163cf5ac67d"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 5,
-            "LevelCheckNote": "Level 3 and higher are affected by this",
-            "LuckCheck": 8,
-            "LuckCheckNote": "0 is good 13 is bad",
-            "PowerCheck": 1000,
-            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
-            "ShieldCheck": 5,
-            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
-            "Category": "Meteoroid",
-            "CategoryNote": "Not sure how to use this other than organization",
-            "ElementCheck": [
-                "Nitrogen"
-            ],
-            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
-            "Describe": [
-                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
-                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
-                "at a current value of <Damage*ElementMarketValue>.",
-                "OBAI recommends the following solutions for your approval."
-            ],
-            "Actions": [
-                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
-                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
-                "3. Attempt to repair on the way? High risk"
-            ],
-            "Results": [
-                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
-                "2. Repair <Luck * Damage / turns> per turn",
-                "3. <Initiative * Luck> on every turn until repaired"
-            ],
-            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "a6051a8f-aad7-4f07-8ce4-c841c43db38a"
-        },
-        {
-            "MoveState": [
-                "traveling",
-                "mining",
-                "travelingLaden",
-                "arrivingRescue",
-                "arrivingAsteroid"
-            ],
-            "MoveStateNote": "If left blank, can be executed upon any move",
-            "Entity": "miner",
-            "LevelCheck": 10,
             "LevelCheckNote": "Level 3 and higher are affected by this",
             "LuckCheck": 4,
             "LuckCheckNote": "0 is good 13 is bad",
@@ -448,7 +147,308 @@
                 "3. <Initiative * Luck> on every turn until repaired"
             ],
             "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
-            "EventID": "fd46cd6b-eaca-4e3f-b800-29f38ed87476"
+            "EventID": "60b4074e-e13d-4f9a-b0e9-2df75848003d"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 4,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 7,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "4435edb5-bad9-4892-85fd-6de0d8d0fbb0"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 8,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 2,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "8de7115a-9749-4b34-8e82-6cff171cea9a"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 1,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 5,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "b899c833-7629-495e-a4ca-441af6680dea"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 9,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 2,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "b28ed00d-5b0f-47c6-ad1b-fd14db4b918b"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 4,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 4,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "9e3c9596-61ea-473e-87eb-fb407e526747"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 7,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 10,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "3268f4c5-238a-48e1-b54d-cef366c48866"
+        },
+        {
+            "MoveState": [
+                "traveling",
+                "mining",
+                "travelingLaden",
+                "arrivingRescue",
+                "arrivingAsteroid"
+            ],
+            "MoveStateNote": "If left blank, can be executed upon any move",
+            "Entity": "miner",
+            "LevelCheck": 5,
+            "LevelCheckNote": "Level 3 and higher are affected by this",
+            "LuckCheck": 7,
+            "LuckCheckNote": "0 is good 13 is bad",
+            "PowerCheck": 1000,
+            "PowerCheckNote": "Not sure if I should check for power levels or use this to gauge how dangerous this event is",
+            "ShieldCheck": 5,
+            "ShieldCheckNote": "Fix so that it scales with shield + luck modifier",
+            "Category": "Meteoroid",
+            "CategoryNote": "Not sure how to use this other than organization",
+            "ElementCheck": [
+                "Nitrogen"
+            ],
+            "ElementCheckNote": "This fits with the 'Organics'/'Mystery Object' plans",
+            "Describe": [
+                "A small meteoroid <range[1-100*Luck]>grams in size has struck <ship_module(s)> causing <Elements> to leak.",
+                "At your current speed of <speed> you will lose <Damage=range[1-100*Luck*Speed*TTD]> <Elements>",
+                "at a current value of <Damage*ElementMarketValue>.",
+                "OBAI recommends the following solutions for your approval."
+            ],
+            "Actions": [
+                "1. Continue to <Destination> and accept loss of <Damage*ElementMarketValue>",
+                "2. Stop to repair.  Will take <Luck * Damage * turns> days.",
+                "3. Attempt to repair on the way? High risk"
+            ],
+            "Results": [
+                "1. Remove <Damage*ElementMarketValue> / <Turns> per turn",
+                "2. Repair <Luck * Damage / turns> per turn",
+                "3. <Initiative * Luck> on every turn until repaired"
+            ],
+            "ResultsNotes": "Maybe all results should assume 'per move' for x turns",
+            "EventID": "3ffb92d6-ef27-4f24-a704-7dc53a05c3db"
         }
     ]
 }
