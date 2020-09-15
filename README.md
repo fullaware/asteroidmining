@@ -43,7 +43,7 @@ Risks of getting lucky in space
           * The centrifical mass spectrometer starts its work by corraling all of the dislodged material through fins are just behind the drill.  The rows fins are arranged in an increasingly tighter inverted corkscrew configuration to gather the material.  By the time the material has been coaxed to the back of the enclosure, the material is adhering to the walls of the mass collector through centrifical force.  The material is then lined upwhere it will receive a preleminary spectral scan then assigned to a specific tube where further analysis will be done before being sent to it one of the miners expandable transport bladder.  In the case of water ice, a portion is sent to an onboard electrolysis processing plant that could potentially fuel the miner indefinitely or serve as a fuel station for other space faring vehicles in need.  
           *  
         * This also allows sensors to measure any signs of fracture or undue stress between strikes.  Orbital drones will provide eyes in the sky for signs of stress that the miners may miss.
-        * 
+        * REFERENCE : https://codereview.stackexchange.com/questions/94116/turn-based-battle-simulator
 
 6. Create query engine for selecting events from blueprint based on criteria of each event
 7. Create Admin portal for editing blueprints
