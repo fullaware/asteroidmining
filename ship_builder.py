@@ -23,6 +23,7 @@ def ship_builder(ship_type='miner', ship_value=9000000, ship_power=1000):
     -----
         * Design JSON blueprint
         * Randomly generate all ship elements from JSON blueprint.
+        * ISS mass is 419,725 kg
     """
 
     # if ship_type is ship_builder.__defaults__[0]

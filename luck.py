@@ -66,7 +66,8 @@ SIMULATE GAME LOGIC FATE/LUCK system
 How many turns can the player survive without mediation
 """
 
-def fate_roll():
+
+def fate_roll(sides=6, initiative=1):
     """
     2 x d6
     You roll one as positive and one as negative. 
@@ -75,10 +76,11 @@ def fate_roll():
     If you roll 3 on the positive and 6 on the negative, that's a -3.  
     The range of that is from -5 to +5. 
     """
-    d1 = -diceroll()
-    d2 = diceroll()
+    # d1 = -diceroll(sides)*initiative
+    d2 = diceroll(sides)*initiative
 
-    return d1 + d2
+    return d2
+
 
 def random_window(luck=0, coin=0):
     # coin 0 bad 1 good
@@ -178,4 +180,14 @@ def test_luck(max_tries=1):
 
 
 # test_luck(1)
-print(fate_roll())
+rock = 4000
+power = 1200
+count = 0
+while rock > 0:
+    DEBUG = True
+    dmg = fate_roll(initiative=int(power/diceroll(6)))
+    rock = rock - dmg
+    alert_msg(dmg)
+    count += 1
+
+print(count)
