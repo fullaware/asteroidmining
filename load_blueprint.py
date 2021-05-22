@@ -5,7 +5,7 @@ from collections import ChainMap
 
 """
     Read from asteroid_blueprint.json
-    spectral_pop - is the population of spectral types (C,S,M) by % of total population
+    spectral_population - is the population of spectral types (C,S,M) by % of total population
     elements - (ice,iron,silicate,etc) 
         spectral_class : {C:{min:int,max:int}} - expected range of occurance of element for each spectral class
         uses : str
@@ -28,7 +28,7 @@ class LoadBlueprint:
         with open('data/asteroid_blueprint.json', 'r') as json_file:
             blueprint = json.load(json_file)
 
-            for class_type, percent_of_pop in blueprint['spectral_pop'].items():
+            for class_type, percent_of_pop in blueprint['spectral_population'].items():
 
                 self.blueprint_class_choices.append(class_type)
                 self.blueprint_class_weights.append(percent_of_pop)
