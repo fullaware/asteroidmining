@@ -13,13 +13,42 @@ Risks of getting lucky in space
 ## TODO
 
 1. ~~Generate Asteroid from flexible JSON blueprint~~
-2. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
-3. ~~Save to a JSON file~~
-4. Create Events JSON blueprint schema
+-- Read from asteroid_blueprint.json
+   spectral_population - is the population of spectral types (C,S,M) by % of total population
+   elements - (ice,iron,silicate,etc) 
+        `spectral_class : {C:{min:int,max:int}}` - expected range of occurance of element for each spectral class
+        `uses : str`
+        `tech : [str]` - # TODO: Tech tree ideas need to be developed
+
+    Return:  
+        `blueprint_class_choices = ['C', 'S', 'M']`  
+        `blueprint_class_weights = (75, 17, 10)`  
+        `blueprint_asteriods`  
+1. ~~"Mine" asteroid JSON object by randomly deducting from asteroid elements~~
+1. ~~Save to a JSON file~~
+1. Create Events JSON blueprint schema
    - **In Progress**
    - DEV NOTES:
       - [`events_blueprint.json`](data/events_blueprint.json) outline drafted, needs schema
-5. Build "Luck" system simulator to test game logic.
+1. Given the weights of known asteroids we will randomize up to 6 digits, then 
+   expand by multiplying to `10**10`.  We aren't looking for simulation
+   but I would like to show the massive sizes we are dealing with.
+   we will not target anything smaller than `10 x 10**10`
+   which will be `100,000,000,000 kg`.  
+  
+   Plan for ships to mine between `0` and `5000kg` per cycle
+
+      - Ceres `938350 × 10^15 kg`
+      - Vesta `259076 x 10^15`
+      - Psyche `241000 x 10^15`
+      - Europa `227000 x 10^15`
+      - Ganymed `167 x 10^15`
+      - Eros `6.6 x 10^15`
+      - Phobos `10.6 x 10^15` - Moon of Mars
+      - Ryugu `450 x 10^9 kg`
+      - Bennu `78 x 10^9`
+
+1. Build "Luck" system simulator to test game logic.
    - **In Progress**
    - DEV NOTES:
       - Current Luck system is based on a random width moving range within 1-20 & coinflip (0 bad 1 good).
@@ -45,8 +74,8 @@ Risks of getting lucky in space
          - This also allows sensors to measure any signs of fracture or undue stress between strikes.  Orbital drones will provide eyes in the sky for signs of stress that the miners may miss.
          - REFERENCE : <https://codereview.stackexchange.com/questions/94116/turn-based-battle-simulator>
 
-6. Create query engine for selecting events from blueprint based on criteria of each event
-7. Create ?Flask? Admin portal for editing blueprints
+1. Create query engine for selecting events from blueprint based on criteria of each event
+1. Create ?Flask? Admin portal for editing blueprints
    - **Will become precurser to game UI**
    - Create a new Asteroid or Miner
    - See the list of Asteroids miners.
@@ -54,7 +83,7 @@ Risks of getting lucky in space
    - Update Asteroid post 'capture' and new mass size/content post mining phase
    - Update miner info; new mass size/content/part durability/power
    - Delete Miner
-8. Create speed, location, distance attributes.
+1. Create speed, location, distance attributes.
 
 Rescue mission finds 2 closest miners + dedicated rescue ship.
 
@@ -80,12 +109,12 @@ Each miner is equipped with a basic repair drone.
 
 ### 1. Turn execution  
 
-   Upon execution of the turn, an 'Initiative Roll d20' and 'Luck Roll ?' are used to impact the effectiveness of the turn.  
+Upon execution of the turn, an 'Initiative Roll d20' and 'Luck Roll ?' are used to impact the effectiveness of the turn.  
 
-Set range of "fate" within each event manually per event?  
-Set range of "fate" within each event based on Luck?  
-Set range of "fate" within each event with another d20?  
-
+- Set range of "fate" within each event manually per event?  
+- Set range of "fate" within each event based on Luck?  
+- Set range of "fate" within each event with another d20?  
+    
 - 10-19 initiative + good or bad luck. No New events.  
 - 2-9 initiative + bad luck.
   - Query Events for matching criteria, and execute with `<Initiative + Luck>`.  
