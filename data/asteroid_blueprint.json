@@ -169,7 +169,7 @@
                     "max": 20
                 }
             },
-            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "uses": "Great natural radiation buffer due to density.  Otherwise, valueless and undesirable material left over from the mining process",
             "tech": []
         },
         "cobalt": {
@@ -187,7 +187,7 @@
                     "max": 20
                 }
             },
-            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "uses": "Not just a great color for dishes and classic cars.",
             "tech": [
                 "Oxygen",
                 "Electronics"
@@ -208,7 +208,7 @@
                     "max": 20
                 }
             },
-            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "uses": "Chickens are famous for making it.",
             "tech": [
                 "Fuel",
                 "Farming"
@@ -229,7 +229,7 @@
                     "max": 20
                 }
             },
-            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "uses": "Bleaches hair, propels rockets, makes a mean peroxide",
             "tech": [
                 "Fuel",
                 "Electronics"
@@ -250,7 +250,7 @@
                     "max": 20
                 }
             },
-            "uses": "NONE.  Also known as 'gangue'.  Valueless and undesirable material left over from the mining process",
+            "uses": "Offensive odor but plants love it",
             "tech": [
                 "Farming"
             ]

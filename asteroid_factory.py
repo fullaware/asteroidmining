@@ -9,7 +9,7 @@ from pprint import pprint
 bp = LoadBlueprint()
 
 
-def asteroid_builder():
+def asteroid_factory():
     """Returns single JSON object
 
     Sequences:
@@ -124,4 +124,4 @@ def asteroid_builder():
 
 
 if __name__ == "__main__":
-    pprint(asteroid_builder())
+    pprint(asteroid_factory())

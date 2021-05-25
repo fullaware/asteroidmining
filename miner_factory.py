@@ -4,7 +4,7 @@ from uuid import uuid4
 import random as r
 
 
-def ship_builder(ship_type='miner', ship_value=9000000, ship_power=1000):
+def miner_factory(ship_type='miner', ship_value=9000000, ship_power=1000):
     """Returns single JSON object in the following format:
 
         {
@@ -26,7 +26,7 @@ def ship_builder(ship_type='miner', ship_value=9000000, ship_power=1000):
         * ISS mass is 419,725 kg
     """
 
-    # if ship_type is ship_builder.__defaults__[0]
+    # if ship_type is miner_factory.__defaults__[0]
     #     pass
     # else:
     #     r.randint(75, 100)
