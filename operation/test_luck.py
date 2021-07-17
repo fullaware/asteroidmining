@@ -26,60 +26,17 @@ def diceroll(sides=6):
     return roll
 
 
-def polarity(max_count=5):
+def coin_flip():
     """
-    max_count is the upper range limit of the number of times the
-    coins will be flipped before returning the results.
-    This helps prime the random seed generator and produce more randomized results.
+    coin flip
+    0 = heads/positive
+    1 = tails/negative
 
     TODO:
     -----
-        * Convert to dict?
+        * 
     """
-
-    for _ in range(0, max_count, 1):
-        pol = []
-        random.seed()
-        roll = random.randint(1, max_count)
-        if roll % 2:
-            pol.append(1)
-            pol.append('bad')
-            pol.append('negative')
-            pol.append('tails')
-        else:
-            pol.append(0)
-            pol.append('good')
-            pol.append('positive')
-            pol.append('heads')
-    return pol
-
-
-# print(f"Dice 1 : {diceroll(20)}\n"
-#       f"Dice 2 : {diceroll(20)}")
-# # print(f"Polarity : {polarity()[0]+48^4}")
-# print(f"Polarity : {polarity()[2]}")
-# print(f"Coinflip : {polarity()[3]}")
-
-
-"""
-SIMULATE GAME LOGIC FATE/LUCK system
-How many turns can the player survive without mediation
-"""
-
-
-def fate_roll(sides=6, initiative=1):
-    """
-    2 x d6
-    You roll one as positive and one as negative. 
-    Subtract the value of the negative d6 from the value of the positive one. 
-    So if you roll a 4 on the positive and 2 on the negative, that's a +2. 
-    If you roll 3 on the positive and 6 on the negative, that's a -3.  
-    The range of that is from -5 to +5. 
-    """
-    # d1 = -diceroll(sides)*initiative
-    d2 = diceroll(sides)*initiative
-
-    return d2
+    return random.randint(0,1)
 
 
 def random_window(luck=0, coin=0):
@@ -122,7 +79,7 @@ def test_luck(max_tries=1):
             random.seed()
             turns += 1
             fate = diceroll(20)
-            coin = polarity()[0]  # 0 bad 1 good
+            coin = coin_flip() # 0 bad 1 good
             # 0 bad 13 good
             if coin == 0 and luck <= 0:
                 alert_msg(f"{ConColor.RED}\tImpact imminent{ConColor.RESET}")
@@ -179,15 +136,4 @@ def test_luck(max_tries=1):
               f"We survived {turns} days on autopilot and my great looks.  Even walked away with {luck} luck.\n")
 
 
-# test_luck(1)
-rock = 4000
-power = 1200
-count = 0
-while rock > 0:
-    DEBUG = True
-    dmg = fate_roll(initiative=int(power/diceroll(6)))
-    rock = rock - dmg
-    alert_msg(dmg)
-    count += 1
-
-print(count)
+test_luck()

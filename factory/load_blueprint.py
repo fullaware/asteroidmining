@@ -25,7 +25,7 @@ class LoadBlueprint:
         self.blueprint_class_weights = []
         blueprint_construct = {}
 
-        with open('data/asteroid_blueprint.json', 'r') as json_file:
+        with open('../data/asteroid_blueprint.json', 'r') as json_file:
             blueprint = json.load(json_file)
 
             for class_type, percent_of_pop in blueprint['spectral_population'].items():
