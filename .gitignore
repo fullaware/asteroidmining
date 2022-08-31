@@ -108,4 +108,4 @@ pyvenv.cfg
 .mypy_cache/
 
 lib64
-.vscode
+.vscode/
