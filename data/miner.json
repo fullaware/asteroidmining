@@ -1,0 +1,12 @@
+{
+    "miners" : [{
+        "power" : 200,
+        "value" : 1000,
+        "name" : "Newton"
+    },
+{
+    "power" : 1992,
+    "value" : 28399,
+    "name" : "Hawking"
+}]
+}

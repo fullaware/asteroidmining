@@ -9,20 +9,9 @@ Create function to use the Miners power to collect the value of the Asteroid
 
 import random
 import json
-from itertools import count
 
 miner = {"power": 100, "value": 0, "production": 0}
 asteroid = {"value": 101}
-rocks = {}
-
-
-class Asteroid:
-    _counter = count(4)
-
-    def __init__(self):
-        self.id = next(self._counter)
-        random.seed()  # helps with better random number generation
-        self.value = random.randint(100, 999)
 
 
 def mine_value():
@@ -68,14 +57,13 @@ def print_attributes():
 
 
 def load_attributes():
-    with open('data.json') as json_file:
+    with open('data/miner.json') as json_file:
         workload = json.load(json_file)
-        for miner in workload['miner']:
+        for miner in workload['miners']:
+            print(f"miner name : {miner['name']}")
             print(f"miner power : {miner['power']}")
             print(f"miner value : {miner['value']}")
-
-        for asteroid in workload['asteroid']:
-            print(f"asteroid value : {asteroid['value']}")
+            print(f"miner all {miner}")
 
 
 def impact_countdown(initial, impact):
@@ -106,14 +94,7 @@ while running:
     elif choice == 3:
         find_asteroid()
     elif choice == 4:
-        gem = Asteroid()
-        print(gem.id)
-        print(gem.value)
-        rocks.__setitem__(gem.id, gem.value)
-    elif choice == 5:
-        print(rocks)
-        for key in rocks:
-            print(key, ' : ', rocks[key])
+        load_attributes()
     elif choice == 0:
         running = False
     else:

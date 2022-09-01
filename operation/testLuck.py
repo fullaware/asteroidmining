@@ -4,13 +4,12 @@
 Standard dice 'test' is to roll each die 5x number of sides.
 
 diceroll(sides)
-polarity(max_count) # boolean;
 coinflip(max_count)
 runofluck # Count/MaxLimit moves this should effect
 
 """
 import random
-from console_colors import ConColor
+from consoleColors import ConColor
 
 
 DEBUG = True
@@ -139,7 +138,8 @@ def test_luck(max_tries=1):
               f"We survived {turns} days on autopilot and my great looks.  Even walked away with {luck} luck.\n")
 
 
-# test_luck()
+test_luck()
+
 def goodorbad():
     """Using D6 and D20 to determine good vs bad 
 
