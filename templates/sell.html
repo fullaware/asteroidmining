@@ -8,7 +8,7 @@
     <div class="container">
       <h1 class="mt-5">Asteroid Miner</h1>
       <h2 class="mt-5">Sell Resources</h2>
-      {% if len(cargo) == 0 %}
+      {% if cargo is none %}
         <p>Your cargo hold is currently empty.</p>
       {% else %}
         <table class="table">
