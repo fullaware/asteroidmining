@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Daily Events for {{ player_name }}</title>
+    <title>Asteroid Mining - {{ player_name }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link id="favicon" rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <style>
@@ -15,7 +15,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 200px;
+            width: 300px;
             background-color: #343a40;
             border-radius: 5px;
             padding: 10px;
@@ -37,6 +37,7 @@
         .alert-red { color: #dc3545; } /* Direct hit */
         .alert-yellow { color: #ffc107; } /* Minor impact */
         .alert-blue { color: #17a2b8; } /* Smooth evasion */
+        .alert-purple { color: #6f42c1; }  /* Cargo full */
     </style>
 </head>
 <body class="bg-dark text-light">
@@ -45,18 +46,7 @@
         <p class="text-center">Survived for <strong>{{ days_survived }}</strong> days.</p>
 
         <!-- Top 5 High Scores in the Upper Right -->
-        <div class="top-right">
-            <h5>Top 5 High Scores</h5>
-            <ul class="list-unstyled">
-                {% for score in high_scores %}
-                    <li>
-                        <a href="/player_logs/{{ score.name }}" class="text-decoration-none text-light">
-                            {{ score.name }}
-                        </a> - {{ score.days_survived }} days
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% include 'highscore.html' %}
         <form method="get" action="/">
             <button type="submit" class="btn btn-purple btn-block">Play</button>
         </form>
