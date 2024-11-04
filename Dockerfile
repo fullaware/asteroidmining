@@ -9,9 +9,9 @@ ENV PIP_DEFAULT_TIMEOUT=100 \
     # cache is useless in docker image, so disable to reduce image size
     PIP_NO_CACHE_DIR=1
 
-RUN mkdir /asteroids
-WORKDIR /asteroids
-COPY requirements.txt /asteroids
+RUN mkdir /asteroidmining
+WORKDIR /asteroidmining
+COPY requirements.txt /asteroidmining
 
 RUN set -ex \
     # Create a non-root user
@@ -31,9 +31,9 @@ RUN set -ex \
 
 # RUN pip install --upgrade pip
 # RUN pip install --no-cache-dir -r requirements.txt
-COPY main.py /asteroids
-COPY /templates /asteroids/templates/
-COPY /static/favicon.ico /asteroids/static/favicon.ico
+COPY main.py /asteroidmining
+COPY /templates /asteroidmining/templates/
+COPY /static/favicon.ico /asteroidmining/static/favicon.ico
 EXPOSE 8000
 ENTRYPOINT ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0","--port", "8000"]
 # CMD python -m uvicorn main:app --host 0.0.0.0 --port 8000

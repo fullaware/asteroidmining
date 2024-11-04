@@ -8,11 +8,13 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: Candy123
 
   asteroids:
+    env_file:
+      - .env
     build: 
         dockerfile: Dockerfile
         context: ./
-    container_name: asteroids
-    image: fullaware/asteroids:latest
+    container_name: asteroidmining
+    image: fullaware/asteroidmining:latest
     ports: 
         - "8000:8000"
     extra_hosts:
