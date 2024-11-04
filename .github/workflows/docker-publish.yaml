@@ -9,11 +9,7 @@
 
 name: Publish Docker image
 
-on: 
-  push:
-    branches:
-      - latest
-
+on: push
 
 jobs:
   push_to_registry:
