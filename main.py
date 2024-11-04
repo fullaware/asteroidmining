@@ -3,9 +3,45 @@ from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from motor.motor_asyncio import AsyncIOMotorClient
 from fastapi.templating import Jinja2Templates
+import os
+from dotenv import load_dotenv
+import urllib.parse
 import random
 
 app = FastAPI()
+
+
+
+
+
+# A ".env" file is required to connect to a MongoDB Database
+# when running via "uvicorn main:app --host 0.0.0.0 --port 24318 --reload"
+
+######### .env template #########
+# DB_SERVER=10.28.28.61
+# DB_USER=root
+# DB_PW=Candy123
+# DB_NAME=asteroidmining
+
+load_dotenv()
+
+if "DB_SERVER" in os.environ and "DB_USER" in os.environ and "DB_PW" in os.environ:
+    db_server = os.environ['DB_SERVER']
+    db_username = os.environ['DB_USER']
+    db_password = urllib.parse.quote_plus(os.environ['DB_PW']) # Fix for passwords with non-alphanumeric symbols
+    db_name = os.environ['DB_NAME']
+
+    print(f"Connecting to MongoDB server {db_server} on db {db_name}\n")
+else:
+    print(f"\nERROR : Missing environment variables:\n")
+    print(f"DB_SERVER\nDB_USER\nDB_PW\nDB_NAME\n")
+    print(f"Loading .env file...\n")
+
+    db_server = os.getenv['DB_SERVER']
+    db_username = os.getenv['DB_USER']
+    db_password = urllib.parse.quote_plus(os.getenv['DB_PW']) # Fix for passwords with non-alphanumeric symbols
+    db_name = os.getenv['DB_NAME']
+
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 # add favicon route
@@ -15,8 +51,8 @@ async def favicon():
 
 # Database connection
 # client = AsyncIOMotorClient("mongodb://root:Candy123@10.28.28.32:27017")
-client = AsyncIOMotorClient("mongodb://root:Candy123@mongo:27017")
-db = client["game_db"]
+client = AsyncIOMotorClient(f"mongodb://{db_username}:{db_password}@{db_server}:27017")
+db = client[db_name]
 game_state_collection = db["game_state"]
 game_log_collection = db["game_log"]
 high_scores_collection = db["high_scores"]
