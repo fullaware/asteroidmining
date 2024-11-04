@@ -14,7 +14,8 @@ async def favicon():
     return FileResponse("static/favicon.ico")
 
 # Database connection
-client = AsyncIOMotorClient("mongodb://root:Candy123@10.28.28.32:27017")
+# client = AsyncIOMotorClient("mongodb://root:Candy123@10.28.28.32:27017")
+client = AsyncIOMotorClient("mongodb://root:Candy123@mongo:27017")
 db = client["game_db"]
 game_state_collection = db["game_state"]
 game_log_collection = db["game_log"]

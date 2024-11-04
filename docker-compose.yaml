@@ -1,0 +1,19 @@
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Candy123
+
+  asteroids:
+    build: 
+        dockerfile: Dockerfile
+        context: ./
+    container_name: asteroids
+    image: fullaware/asteroids:latest
+    ports: 
+        - "8000:8000"
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
