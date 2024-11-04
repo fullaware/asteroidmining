@@ -10,10 +10,6 @@ import random
 
 app = FastAPI()
 
-
-
-
-
 # A ".env" file is required to connect to a MongoDB Database
 # when running via "uvicorn main:app --host 0.0.0.0 --port 24318 --reload"
 
@@ -168,9 +164,25 @@ async def submit_score(request: Request):
     game_state = await game_state_collection.find_one({})
     days_survived = game_state["day"]
 
-    await high_scores_collection.insert_one({"name": player_name, "days_survived": days_survived})
+    # Save high score with the player's name
+    high_score_entry = {
+        "name": player_name,
+        "days_survived": days_survived,
+    }
+    await high_scores_collection.insert_one(high_score_entry)
 
+    # Save daily logs associated with the player's name in player_logs collection
+    all_logs = await game_log_collection.find().sort("day", -1).to_list(None)
+    await db["player_logs"].insert_one({
+        "name": player_name,
+        "days_survived": days_survived,
+        "logs": all_logs
+    })
+
+    # Retrieve updated top 10 high scores
     high_scores = await get_top_high_scores()
+
+    # Reset game state for a new game
     reset_state = {"shield": 100, "luck": 7, "day": 0}
     await game_state_collection.replace_one({}, reset_state)
     await game_log_collection.delete_many({})
@@ -184,6 +196,7 @@ async def submit_score(request: Request):
             "high_scores": high_scores
         }
     )
+
 
 @app.post("/auto_play", response_class=HTMLResponse)
 async def auto_play(request: Request):
@@ -208,6 +221,31 @@ async def play_again(request: Request):
             "request": request,
             "game_state": reset_state,
             "all_logs": [],
+            "high_scores": high_scores
+        }
+    )
+
+@app.get("/player_logs/{player_name}", response_class=HTMLResponse)
+async def player_logs(request: Request, player_name: str):
+    # Retrieve player logs by player name
+    player_data = await db["player_logs"].find_one({"name": player_name})
+    if not player_data:
+        return templates.TemplateResponse(
+            "error.html", 
+            {"request": request, "message": "Player not found."}
+        )
+
+    # Retrieve the top 5 high scores
+    high_scores = await get_top_high_scores(limit=5)
+
+    # Pass logs and high scores to template for rendering
+    return templates.TemplateResponse(
+        "player_logs.html",
+        {
+            "request": request,
+            "player_name": player_data["name"],
+            "days_survived": player_data["days_survived"],
+            "logs": player_data["logs"],
             "high_scores": high_scores
         }
     )

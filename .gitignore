@@ -110,3 +110,4 @@ pyvenv.cfg
 
 lib64
 .vscode/
+.DS_Store
