@@ -1,0 +1,58 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Starship - Day {{ game_state.day }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+    <div class="container my-4">
+        <h1 class="text-center text-purple mb-4">Day {{ game_state.day }}</h1>
+
+        <div class="mb-3">
+            <h4>Current Game State</h4>
+            <p><strong>Shield:</strong> {{ game_state.shield }}</p>
+            <p><strong>Luck:</strong> {{ game_state.luck }}</p>
+        </div>
+        <!-- Auto-Play Button -->
+        <form method="post" action="/auto_play">
+            <button type="submit">Auto-Play</button>
+        </form>
+        <form method="get" action="/">
+            <button type="submit">Play</button>
+        </form>
+        <h4>Daily Logs</h4>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Fate</th>
+                    <th scope="col">Luck</th>
+                    <th scope="col">Shield</th>
+                    <th scope="col">Alerts</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in all_logs %}
+                <tr>
+                    <td>{{ log.day }}</td>
+                    <td>{{ log.fate }}</td>
+                    <td>{{ log.luck }}</td>
+                    <td>{{ log.shield }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for alert in log.alerts %}
+                                <li class="alert-{{ alert.color }}">{{ alert.message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+    </div>
+</body>
+</html>

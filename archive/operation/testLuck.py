@@ -69,108 +69,102 @@ def alert_msg(msg):
         print(msg)
 
 
-def test_luck(max_tries=1):
-    for _ in range(0, max_tries):
+""" def test_luck(max_tries=1):
+    def alert(message, color):
+        print(f"{color}{message}{ConColor.RESET}")
+
+    for _ in range(max_tries):
         shield = 100
         luck = 7
         turns = 0
-        range_width = 0
-        range_start = 0
-        range_end = 0
+        random.seed()
+        
         while shield > 0:
-            random.seed()
             turns += 1
             fate = diceroll(20)
-            coin = coin_flip() # 0 bad 1 good
-            # 0 bad 13 good
+            coin = coin_flip()  # 0 bad, 1 good
+            range_start, range_end = 0, 0
+
             if coin == 0 and luck <= 0:
-                alert_msg(f"{ConColor.RED}\tImpact imminent{ConColor.RESET}")
-                luck = 0
-                range_start = 1
-                range_end = 20
-            elif coin == 1 and luck >= 13:
-                alert_msg(
-                    f"{ConColor.GREEN}\tLucky Duck - Dodged{ConColor.RESET}")
-                luck = 13
-                range_start = 0
-                range_end = 0
+                alert("Impact imminent", ConColor.RED)
+            elif coin == 1 and luck >= 5:
+                alert("Lucky Duck - Dodged", ConColor.GREEN)
+                luck += 1
             elif coin == 0 and luck >= 1:
-                alert_msg(f"{ConColor.RED}\tBrace for impact!{ConColor.RESET}")
-                range_width = random_window(luck, coin)
-                range_start = range_width[0]
-                range_end = range_width[1]
+                alert("Brace for impact!", ConColor.RED)
+                range_start, range_end = random_window(luck, coin)
                 luck -= 1
             elif coin == 1 and luck < 13:
-                alert_msg(
-                    f"{ConColor.YELLOW}\tEvasive maneuver!{ConColor.RESET}")
+                alert("Evasive maneuver!", ConColor.YELLOW)
                 luck += 1
-                range_width = random_window(luck, coin)
-                range_start = range_width[0]
-                range_end = range_width[1]
+                range_start, range_end = random_window(luck, coin)
 
             if range_start == 0 and range_end == 0:
                 damage = 0
-                alert_msg(
-                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}")
-            elif fate in range(range_start, range_end):
-                if coin == 0:
-                    damage = diceroll(6)
-                else:
-                    damage = 1
-                    if luck >= 1:
-                        luck -= 1
-                alert_msg(
-                    f"{ConColor.RED}\tHIT! Shield reduced by {damage}")
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}", ConColor.RESET)
+            elif range_start <= fate < range_end:
+                damage = diceroll(6) if coin == 0 else 1
+                if coin == 1 and luck > 0:
+                    luck -= 1
                 shield -= damage
-                alert_msg(
-                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
-                range_width = 0
-                range_start = 0
-                range_end = 0
-
-            elif fate not in range(range_start, range_end):
-                damage = 0
-                alert_msg(f"{ConColor.BLUE}\tDODGED!")
-                alert_msg(
-                    f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range_width {range_width}, damage {damage}, shield {shield}{ConColor.RESET}")
+                alert(f"HIT! Shield reduced by {damage}", ConColor.RED)
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range ({range_start}-{range_end}), damage {damage}, shield {shield}", ConColor.RESET)
+            else:
+                alert("DODGED!", ConColor.BLUE)
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}", ConColor.RESET)
 
         print(f"\nWell crew, it was a good run...\n"
-              f"We survived {turns} days on autopilot and my great looks.  Even walked away with {luck} luck.\n")
+              f"We survived {turns} days on autopilot and my great looks. Even walked away with {luck} luck.\n")
 
+ """
 
-test_luck()
+def test_luck(max_tries=1):
+    def alert(message, color):
+        alerts.append({"message": message, "color": color})
 
-def goodorbad():
-    """Using D6 and D20 to determine good vs bad 
+    game_data = []
+    for _ in range(max_tries):
+        shield = 100
+        luck = 7
+        turns = 0
+        random.seed()
+        alerts = []  # List to store alerts
 
-    D6 - roll 1
-        - 6 is rolled, the first and last 6 digits are now bad.
-        - 1 is rolled, the 1 and 19 are bad
-        - 2 is rolled, 1-2 and 18-19 are bad
+        while shield > 0:
+            turns += 1
+            fate = diceroll(20)
+            coin = coin_flip()
+            range_start, range_end = 0, 0
 
-    D20 - roll 2
-        - 20 is rolled, perfect good
-        - If D20 is less than or equal to D6, min bad
-        - If D20 is greater than or equal to 20 - D6, max bad
-        - if D20 is greater than D6 and less than 20 - D6, success       
+            if coin == 0 and luck <= 0:
+                alert("Impact imminent", "red")
+            elif coin == 1 and luck >= 5:
+                alert("Lucky Duck - Dodged", "green")
+                luck += 1
+            elif coin == 0 and luck >= 1:
+                alert("Brace for impact!", "red")
+                range_start, range_end = random_window(luck, coin)
+                luck -= 1
+            elif coin == 1 and luck < 13:
+                alert("Evasive maneuver!", "yellow")
+                luck += 1
+                range_start, range_end = random_window(luck, coin)
 
-    """
+            if range_start == 0 and range_end == 0:
+                damage = 0
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}", "reset")
+            elif range_start <= fate < range_end:
+                damage = diceroll(6) if coin == 0 else 1
+                if coin == 1 and luck > 0:
+                    luck -= 1
+                shield -= damage
+                alert(f"HIT! Shield reduced by {damage}", "red")
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, range ({range_start}-{range_end}), damage {damage}, shield {shield}", "reset")
+            else:
+                alert("DODGED!", "blue")
+                alert(f"turn {turns}, fate {fate}, luck {luck}, coin {coin}, shield {shield}", "reset")
 
-    luck = diceroll(6)
-    attempt = diceroll(20)
-    luckmax = 20 - luck
+        # Append the game data along with alerts to the game data list
+        game_data.append({"turns": turns, "shield": shield, "luck": luck, "alerts": alerts})
 
-    print(f"Luck = {luck}\nAttempt = {attempt}\nLuck max = {luckmax}")
-
-    if attempt == 20:
-        print(f"Perfect")
-    elif attempt <= luck:
-        print(f"Unlucky min")
-    elif attempt >= luckmax:
-        print(f"Unlucky max")
-    elif attempt > luck and attempt < luckmax:
-        print(f"Success")
-
-    return luck, attempt
-
-goodorbad()
+    return game_data
