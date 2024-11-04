@@ -1,10 +1,17 @@
 from fastapi import FastAPI, Request, Depends
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from motor.motor_asyncio import AsyncIOMotorClient
 from fastapi.templating import Jinja2Templates
 import random
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+# add favicon route
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse("static/favicon.ico")
 
 # Database connection
 client = AsyncIOMotorClient("mongodb://root:Candy123@10.28.28.32:27017")
