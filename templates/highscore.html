@@ -1,0 +1,9 @@
+<div class="top-right">
+    <h5>Top 5 High Scores</h5>
+    <ul class="list-unstyled">
+        {% for score in high_scores %}
+            <li><a href="/player_logs/{{ score.uid }}" class="text-decoration-none text-light">{{ score.name }}</a> - {{ score.days_survived }} days, ${{ score.credits_earned }} credits</li>
+        {% endfor %}
+    </ul>
+</div>
+
