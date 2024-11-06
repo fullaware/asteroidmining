@@ -2,7 +2,7 @@
 image:
   repository: fullaware/asteroidmining
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 # MongoDB configuration
 mongodb:
