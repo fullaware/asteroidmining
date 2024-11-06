@@ -12,7 +12,7 @@ import uuid
 app = FastAPI()
 
 # A ".env" file is required to connect to a MongoDB Database
-# when running via "uvicorn main:app --host 0.0.0.0 --port 24318 --reload"
+# when running via "uvicorn main:app --reload"
 
 ######### .env template #########
 # DB_SERVER=10.28.28.61
