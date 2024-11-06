@@ -84,6 +84,9 @@ async def get_config():
     """Retrieve game configuration from MongoDB, initializing if missing."""
     config = await db["config"].find_one({"_id": "game_settings"})
 
+    if config is None:
+        await initialize_config()
+
     return config
 
 # Helper functions
@@ -91,8 +94,12 @@ async def initialize_or_get_game_state():
     """Ensure game state is initialized and update any missing fields."""
     game_state = await game_state_collection.find_one({})
     
+    # Generate a unique UID for the player
+    player_uid = str(uuid.uuid4())
+
     # Define the complete initial game state with all required fields
     default_game_state = {
+        "uid": player_uid,
         "shield": 100,
         "luck": 7,
         "day": 0,
@@ -161,8 +168,9 @@ async def process_day():
     """Process a single game day with dynamic config from MongoDB."""
     game_state = await initialize_or_get_game_state()
     config = await get_config()
-
-    shield, luck, day, asteroid_found, asteroid_mass, asteroid_travel_days, ship_cargo, base_credits = (
+    
+    uid, shield, luck, day, asteroid_found, asteroid_mass, asteroid_travel_days, ship_cargo, base_credits = (
+        game_state["uid"],
         game_state["shield"],
         game_state["luck"],
         game_state["day"],
@@ -235,6 +243,7 @@ async def process_day():
 
     # Update game state with new values
     game_state.update({
+        "uid": uid,
         "shield": max(0, shield),
         "luck": luck,
         "day": day + 1,
@@ -274,7 +283,7 @@ async def game_dashboard(request: Request):
     # Retrieve current game state and configuration
     game_state = await initialize_or_get_game_state()
     config = await get_config()
-    
+
     # Progress the game by one day if shield is greater than zero
     if game_state["shield"] > 0:
         await process_day()  # Process a new day
@@ -309,12 +318,11 @@ async def submit_score(request: Request):
     config = await get_config()
     high_scores = await get_top_high_scores()
 
-    # Generate a unique UID for the player
-    player_uid = str(uuid.uuid4())
+    
 
     # Insert score in the database with UID, name, days survived, and credits
     high_score_entry = {
-        "uid": player_uid,
+        "uid": game_state["uid"],
         "name": player_name,
         "days_survived": game_state["day"],
         "credits_earned": game_state.get("base_credits", 0)
