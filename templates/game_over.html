@@ -17,7 +17,7 @@
     <div class="container text-center my-4">
         <h1>Game Over</h1>
         <p>Great job! You survived for <strong>{{ days_survived }}</strong> days.</p>
-        <p><strong>Total Credits Earned:</strong> {{ game_state.base_credits }}</p>
+        <p><strong>Total Credits Earned:</strong> $ {{ game_state.base_credits }}</p>
         <div class="mb-3">
             <h4>Final Game State</h4>
             <p><strong>Shield:</strong> {{ game_state.shield }}</p>
@@ -34,7 +34,7 @@
             {% endif %}
         </div>
         {% include 'highscore.html' %}
-        <form method="get" action="/"><button type="submit" class="btn btn-purple btn-block">Play</button></form>
+        
         {% if qualifies_for_high_score %}
         <form method="post" action="/submit_score" class="mt-4">
             <input type="hidden" name="credits" value="{{ game_state.base_credits }}">
@@ -46,6 +46,24 @@
         </form>
         {% endif %}
         <form method="post" action="/play_again" class="mt-4"><button type="submit" class="btn btn-purple">Play Again</button></form>
+        <h4>Daily Logs</h4>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr><th>Day</th><th>Fate</th><th>Luck</th><th>Shield</th><th>Alerts</th></tr>
+            </thead>
+            <tbody>
+                {% for log in all_logs %}
+                <tr>
+                    <td>{{ log.day }}</td><td>{{ log.fate }}</td><td>{{ log.luck }}</td><td>{{ log.shield }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for alert in log.alerts %}<li class="alert-{{ alert.color }}">{{ alert.message }}</li>{% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

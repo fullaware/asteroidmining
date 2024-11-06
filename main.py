@@ -58,47 +58,32 @@ high_scores_collection = db["high_scores"]
 templates = Jinja2Templates(directory="templates")
 
 async def initialize_config():
-    """Ensure the configuration settings are initialized in MongoDB."""
-    config = await db["config"].find_one({"_id": "game_settings"})
-    
-    # Default configuration values for required fields
+    """Ensure the configuration settings are initialized or updated in MongoDB."""
     default_config = {
         "_id": "game_settings",
         "asteroid_discovery_chance": 0.1,  # 10% chance each day to find an asteroid
-        "ship_capacity": 10000,            # Max kg the ship can carry
-        "mining_rate": 500,                # Mining rate in kg per hour
-        "travel_days_min": 1,              # Minimum travel time in days
-        "travel_days_max": 5,              # Maximum travel time in days
-        "asteroid_mass_min": 5000,         # Minimum mass of the asteroid in kg
-        "asteroid_mass_max": 50000,        # Maximum mass of the asteroid in kg
-        "credits_per_kg": 10               # Credits earned per kg mined
+        "ship_capacity": random.randint(900, 9000),            # Max kg the ship can carry
+        "mining_rate": random.randint(300, 600),                # Mining rate in kg per hour
+        "travel_days_min": random.randint(1, 10),              # Minimum travel time in days
+        "travel_days_max": random.randint(10, 20),             # Maximum travel time in days
+        "asteroid_mass_min": random.randint(10000, 90000),        # Minimum mass of the asteroid in kg
+        "asteroid_mass_max": random.randint(90001, 9999999),      # Maximum mass of the asteroid in kg
+        "credits_per_kg": random.randint(7, 37)               # Credits earned per kg mined
     }
     
-    # If no config exists, insert the full default configuration
-    if config is None:
-        await db["config"].insert_one(default_config)
-        return default_config
-    
-    # If config exists, check for and add any missing fields
-    updated = False
-    for key, value in default_config.items():
-        if key not in config:
-            config[key] = value
-            updated = True
-    
-    # Update the config document in MongoDB if any fields were missing
-    if updated:
-        await db["config"].replace_one({"_id": "game_settings"}, config)
+    # Replace the config document with default_config, upserting if it does not exist
+    await db["config"].replace_one({"_id": "game_settings"}, default_config, upsert=True)
 
-    return config
+    # Return the updated configuration
+    return default_config
+
 
 
 
 async def get_config():
     """Retrieve game configuration from MongoDB, initializing if missing."""
     config = await db["config"].find_one({"_id": "game_settings"})
-    if config is None:
-        config = await initialize_config()  # Initialize with default settings if not found
+
     return config
 
 # Helper functions
@@ -143,7 +128,7 @@ async def get_top_high_scores(limit=5):
 
 async def display_game_over(request, game_state, all_logs):
     """Display the game over screen with high scores and eligibility for submission."""
-    config = await get_config()  # Retrieve config to pass credits conversion, if needed
+    config = await initialize_config()  # Retrieve config to pass credits conversion, if needed
     high_scores = await get_top_high_scores()
     top_threshold = high_scores[-1]["days_survived"] if len(high_scores) == 10 else 0
     qualifies_for_high_score = game_state["day"] > top_threshold
@@ -237,7 +222,7 @@ async def process_day():
     dodged = random.random() < dodge_chance
 
     if coin == 0 and not dodged:  # Bad outcome, direct hit
-        damage = diceroll(4) + 3
+        damage = diceroll(6) + diceroll(6)
         shield -= damage
         luck = max(0, luck - 1)
         alerts.append({"message": f"Direct hit! Shield reduced by {damage}", "color": "red"})
