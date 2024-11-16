@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import urllib.parse
 import random
 import uuid
+import imagegen as imagegen
 
 app = FastAPI()
 
@@ -187,6 +188,7 @@ async def process_day():
     # Asteroid Discovery
     if not asteroid_found and random.random() < config["asteroid_discovery_chance"]:
         asteroid_found = True
+        imagegen.imagegen("static/asteroid.png")
         asteroid_mass = random.randint(config["asteroid_mass_min"], config["asteroid_mass_max"])
         asteroid_travel_days = random.randint(config["travel_days_min"], config["travel_days_max"])
         total_travel_days = asteroid_travel_days  # Store total travel days for round trip
