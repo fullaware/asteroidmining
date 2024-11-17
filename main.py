@@ -322,7 +322,7 @@ async def game_dashboard(request: Request):
         )
 
     # If shield is zero or below, display the game over screen
-    all_logs = await game_log_collection.find().sort("day", 1).to_list(None)
+    all_logs = await game_log_collection.find().sort("day", -1).to_list(None)
     return await display_game_over(request, game_state, all_logs)
 
 
