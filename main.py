@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import urllib.parse
 import random
 import uuid
+import imagegen as imagegen
 
 app = FastAPI()
 
@@ -169,7 +170,7 @@ async def process_day():
     game_state = await initialize_or_get_game_state()
     config = await get_config()
     
-    uid, shield, luck, day, asteroid_found, asteroid_mass, asteroid_travel_days, ship_cargo, base_credits = (
+    uid, shield, luck, day, asteroid_found, asteroid_mass, asteroid_travel_days, ship_cargo, base_credits, base_travel_days, total_travel_days = (
         game_state["uid"],
         game_state["shield"],
         game_state["luck"],
@@ -178,15 +179,19 @@ async def process_day():
         game_state["asteroid_mass"],
         game_state["asteroid_travel_days"],
         game_state["ship_cargo"],
-        game_state["base_credits"]
+        game_state["base_credits"],
+        game_state.get("base_travel_days", 0),  # Retrieve base_travel_days or default to 0
+        game_state.get("total_travel_days", 0)  # Retrieve total_travel_days or default to 0
     )
     alerts = []
 
     # Asteroid Discovery
     if not asteroid_found and random.random() < config["asteroid_discovery_chance"]:
         asteroid_found = True
+        imagegen.imagegen("static/asteroid.png")
         asteroid_mass = random.randint(config["asteroid_mass_min"], config["asteroid_mass_max"])
         asteroid_travel_days = random.randint(config["travel_days_min"], config["travel_days_max"])
+        total_travel_days = asteroid_travel_days  # Store total travel days for round trip
         alerts.append({
             "message": f"Asteroid discovered with mass {asteroid_mass} kg. Travel time: {asteroid_travel_days} days.",
             "color": "blue"
@@ -212,7 +217,16 @@ async def process_day():
             alerts.append({"message": "Asteroid depleted.", "color": "red"})
             asteroid_found = False
         elif ship_cargo >= config["ship_capacity"]:
-            # Return to base, transfer cargo to credits, and repair ship
+            # Set base_travel_days to begin the return journey to base using total_travel_days
+            base_travel_days = total_travel_days
+            alerts.append({"message": f"Cargo full. Returning to base with {ship_cargo} kg.", "color": "yellow"})
+
+    # Returning to Base
+    if base_travel_days > 0 and ship_cargo >= config["ship_capacity"]:
+        base_travel_days -= 1
+        alerts.append({"message": f"Returning to base. {base_travel_days} days remaining.", "color": "yellow"})
+
+        if base_travel_days == 0:
             earned_credits = ship_cargo * config["credits_per_kg"]
             base_credits += earned_credits
             shield = 100
@@ -239,7 +253,7 @@ async def process_day():
         shield -= damage
         alerts.append({"message": f"Minor impact on shield by {damage}", "color": "yellow"})
     elif dodged:
-        alerts.append({"message": "Successful evasion!", "color": "green"})
+        alerts.append({"message": "Smooth sailing, all systems nominal", "color": "green"})
 
     # Update game state with new values
     game_state.update({
@@ -251,7 +265,9 @@ async def process_day():
         "asteroid_mass": asteroid_mass,
         "asteroid_travel_days": asteroid_travel_days,
         "ship_cargo": ship_cargo,
-        "base_credits": base_credits
+        "base_credits": base_credits,
+        "base_travel_days": base_travel_days,  # Persist base_travel_days
+        "total_travel_days": total_travel_days  # Persist total_travel_days for future reference
     })
     await game_state_collection.replace_one({}, game_state)
 
@@ -269,6 +285,8 @@ async def process_day():
     await game_log_collection.insert_one(day_log)
 
     return day_log
+
+
 
 
 
@@ -304,7 +322,7 @@ async def game_dashboard(request: Request):
         )
 
     # If shield is zero or below, display the game over screen
-    all_logs = await game_log_collection.find().sort("day", 1).to_list(None)
+    all_logs = await game_log_collection.find().sort("day", -1).to_list(None)
     return await display_game_over(request, game_state, all_logs)
 
 
@@ -314,11 +332,13 @@ async def game_dashboard(request: Request):
 async def submit_score(request: Request):
     form_data = await request.form()
     player_name = form_data.get("player_name")
-    game_state = await game_state_collection.find_one({})
+    game_state = await game_state_collection.find_one({}) or await initialize_or_get_game_state()  # Ensure game_state exists
     config = await get_config()
     high_scores = await get_top_high_scores()
 
-    
+    # Ensure UID exists in game_state
+    if "uid" not in game_state:
+        game_state["uid"] = str(uuid.uuid4())  # Generate a new UID if missing
 
     # Insert score in the database with UID, name, days survived, and credits
     high_score_entry = {
@@ -331,6 +351,7 @@ async def submit_score(request: Request):
 
     # Define reset_state properly as a dictionary
     reset_state = {
+        "uid": game_state["uid"],
         "shield": 100,
         "luck": 7,
         "day": 0,
@@ -355,6 +376,7 @@ async def submit_score(request: Request):
             "config": config
         }
     )
+
 
 
 

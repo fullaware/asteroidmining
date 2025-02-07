@@ -30,6 +30,7 @@ FROM --platform=linux/amd64 python:3.12-slim
 WORKDIR /asteroidmining
 COPY --from=builder /asteroidmining/requirements /usr/local/lib/python3.12/site-packages
 COPY main.py /asteroidmining
+COPY imagegen.py /asteroidmining
 COPY /templates /asteroidmining/templates/
 COPY /static/favicon.ico /asteroidmining/static/favicon.ico
 EXPOSE 8000

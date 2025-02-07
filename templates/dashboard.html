@@ -29,7 +29,7 @@
         <div class="mb-3">
             <h4>Asteroid Status</h4>
             {% if game_state.asteroid_found %}
-                <p><strong>Asteroid Mass:</strong> {{ game_state.asteroid_mass }} kg</p>
+                <p><strong>Asteroid Mass:</strong> {{ game_state.asteroid_mass }} kg <img src="/static/asteroid.png" alt="Asteroid Image" style="max-width: 50%; height: auto;"></p>
                 <p><strong>Travel Days Remaining:</strong> {{ game_state.asteroid_travel_days }}</p>
             {% else %}
                 <p>No asteroid currently found.</p>
