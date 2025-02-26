@@ -1,6 +1,6 @@
 services:
 
-  mongo:
+  mongodb:
     image: mongo
     restart: always
     environment:

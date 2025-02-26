@@ -38,7 +38,7 @@ RUN set -ex \
     # Create a non-root user
     && addgroup --system --gid 1001 appgroup \
     && adduser --system --uid 1001 --gid 1001 --no-create-home appuser
-
+RUN chown -R appuser:appgroup /asteroidmining
 USER appuser
 ENTRYPOINT ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0","--port", "8000"]
 # CMD python -m uvicorn main:app --host 0.0.0.0 --port 8000
