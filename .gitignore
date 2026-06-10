@@ -111,3 +111,4 @@ pyvenv.cfg
 lib64
 .vscode/
 .DS_Store
+static/asteroid.png

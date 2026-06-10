@@ -4,23 +4,20 @@ image:
   tag: latest
   pullPolicy: Always
 
-# MongoDB configuration
+# MongoDB Community Edition (via Bitnami)
+# This chart deploys MongoDB Community Edition, the open-source NoSQL database.
+# Bitnami provides the Helm chart packaging for Kubernetes deployments.
 mongodb:
+  enabled: true
   auth:
     rootPassword: Candy123
     username: root
     password: Candy123
     database: asteroidmining_db
+  replicaSet:
+    enabled: false
   primary:
     persistence:
       enabled: true
-      storageClass: ""  # Set if a specific storage class is required
+      storageClass: ""
       size: 300Mi
-
-# resources:
-#   limits:
-#     cpu: "500m"
-#     memory: "512Mi"
-#   requests:
-#     cpu: "250m"
-#     memory: "256Mi"

@@ -23,8 +23,8 @@ version: 0.1.0
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 
-# Chart.yaml
 dependencies:
   - name: mongodb
-    version: 16.2.1  # Use the appropriate version
+    version: 19.1.6
     repository: https://charts.bitnami.com/bitnami
+    condition: mongodb.enabled
